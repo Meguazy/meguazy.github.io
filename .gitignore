@@ -1,0 +1,5 @@
+# Originali e questionari compilati: mai versionare.
+/inputs/private/
+/node_modules/
+/dist/
+/.astro/

@@ -1,0 +1,40 @@
+---
+import { copy, educationPeriods, experiencePath, type Language } from '../data/site';
+import { journeyCopy } from '../data/journey';
+interface Props { lang: Language }
+const { lang } = Astro.props;
+const t = copy[lang];
+const labels = journeyCopy[lang];
+// Rows are year anchors, not claims of exact start/end months. Dates stay explicit in each node.
+const years = ['2017', '2018', '2022', '2023', '2025', '2026', t.experience.present];
+const events = [
+  { lane: 'work', color: 'backend', start: 1, end: 2, title: t.experience.backend, date: t.experience.backendDates, organization: 'Par-Tec S.p.A.' },
+  { lane: 'education', color: 'education', start: 2, end: 3, title: labels.bachelor, date: educationPeriods.bachelor, organization: 'University of Camerino' },
+  { lane: 'work', color: 'data', start: 3, end: 5, title: t.experience.data, date: t.experience.dataDates, organization: 'Sync Lab S.r.l.' },
+  { lane: 'education', color: 'education', start: 4, end: 6, title: labels.master, date: educationPeriods.master, organization: 'University of Camerino' },
+  { lane: 'work', color: 'research', start: 5, end: 6, title: t.experience.research, date: t.experience.researchDates, organization: 'University of Camerino' },
+  { lane: 'work', color: 'current', start: 6, end: 7, title: 'AI Engineer', date: t.experience.currentDates, organization: 'Datapizza' },
+];
+---
+<div class="journey-flow" aria-describedby="journey-note">
+  <div class="flow-legend">
+    <p id="flow-legend-heading">{labels.legend}</p>
+    <ul aria-labelledby="flow-legend-heading">{events.filter(event => event.lane === 'work').map(event => <li class={`flow-${event.color}`}><span class="flow-swatch" aria-hidden="true"></span><span><strong>{event.title}</strong><span class="flow-legend-period">{event.date}</span></span></li>)}</ul>
+  </div>
+  <div class="flow-lane-headings" aria-hidden="true"><span></span><p class="flow-work-label">{labels.work}</p><p class="flow-education-label">{labels.education}</p></div>
+  <div class="flow-diagram">
+    {years.map((year, index) => <div class="flow-guide" style={`grid-row: ${index + 1}`} aria-hidden="true"><span>{year}</span></div>)}
+    <span class="flow-gap flow-work" style="grid-row: 2 / 3; grid-column: 2" aria-hidden="true"></span>
+    <span class="flow-gap flow-education" style="grid-row: 3 / 4; grid-column: 3" aria-hidden="true"></span>
+    {events.map(event => <article class:list={['flow-event', `flow-${event.lane}`, `flow-${event.color}`, { 'flow-event-joined': events.some(next => next.lane === event.lane && next.start === event.end) }]} style={`grid-row: ${event.start} / ${event.end}; grid-column: ${event.lane === 'work' ? 2 : 3}`}>
+      <span class="flow-track" aria-hidden="true"><span class="flow-dot"></span></span>
+      <a class="flow-node" href={`${experiencePath(lang)}${event.lane === 'education' ? '#education-heading' : ''}`}>
+        <span class="flow-period">{event.date}</span>
+        <h3>{event.title}</h3>
+        <p>{event.organization}</p>
+        <span class="flow-type">{event.lane === 'work' ? labels.work : labels.education}</span>
+      </a>
+    </article>)}
+  </div>
+  <p class="flow-note" id="journey-note">{labels.note}</p>
+</div>

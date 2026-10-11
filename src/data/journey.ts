@@ -1,0 +1,11 @@
+import type { Language } from './site';
+
+// Editorial labels only. Periods and qualifications retain the sources recorded in inputs/private/content.md.
+export const journeyCopy: Record<Language, { work: string; education: string; legend: string; master: string; bachelor: string; note: string }> = {
+  en: { legend: 'Work periods', work: 'Work', education: 'Education', master: 'MSc in Computer Science', bachelor: 'BSc in Mathematics and Applications', note: 'Read from top to bottom. Shared years show work and study in parallel; spacing is not proportional to duration.' },
+  it: { legend: 'Periodi di lavoro', work: 'Lavoro', education: 'Formazione', master: 'Laurea magistrale in Computer Science', bachelor: 'Laurea triennale in Matematica e Applicazioni', note: 'Il percorso si legge dall’alto verso il basso. Gli anni comuni mostrano lavoro e studio in parallelo; le distanze non sono proporzionali alla durata.' },
+  fr: { legend: 'Périodes de travail', work: 'Travail', education: 'Formation', master: 'Master en Computer Science', bachelor: 'Licence en Mathematics and Applications', note: 'Le parcours se lit de haut en bas. Les années communes montrent travail et études en parallèle ; les distances ne sont pas proportionnelles à la durée.' },
+  de: { legend: 'Berufliche Stationen', work: 'Beruf', education: 'Studium', master: 'Master in Computer Science', bachelor: 'Bachelor in Mathematics and Applications', note: 'Der Verlauf wird von oben nach unten gelesen. Gemeinsame Jahre zeigen Beruf und Studium parallel; die Abstände entsprechen nicht der Dauer.' },
+  es: { legend: 'Etapas profesionales', work: 'Trabajo', education: 'Formación', master: 'Máster en Computer Science', bachelor: 'Grado en Mathematics and Applications', note: 'La trayectoria se lee de arriba abajo. Los años comunes muestran trabajo y estudios en paralelo; las distancias no son proporcionales a la duración.' },
+  pl: { legend: 'Okresy pracy', work: 'Praca', education: 'Studia', master: 'Magister Computer Science', bachelor: 'Licencjat Mathematics and Applications', note: 'Ścieżkę czyta się od góry do dołu. Wspólne lata pokazują równoległą pracę i studia; odstępy nie są proporcjonalne do czasu trwania.' },
+};

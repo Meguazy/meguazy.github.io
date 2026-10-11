@@ -1,0 +1,21 @@
+---
+import type { GraphTopology } from '../data/moneyGraphTopology';
+const { topology, id, title, description, labels, className = '' } = Astro.props as {
+  topology: GraphTopology; id: string; title: string; description: string; labels: Record<string,string>; className?: string;
+};
+---
+<svg class={`mt-workflow-svg ${className}`} viewBox={`0 0 ${topology.width} ${topology.height}`} role="img" aria-labelledby={`${id}-svgtitle ${id}-svgdesc`}>
+  <title id={`${id}-svgtitle`}>{title}</title><desc id={`${id}-svgdesc`}>{description}</desc>
+  <defs><marker id={`${id}-arrow`} viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#506b80"/></marker></defs>
+  <g class="mt-graph-edges" marker-end={`url(#${id}-arrow)`}>{topology.edges.map(edge => <path class={edge.conditional ? 'mt-graph-conditional' : ''} d={edge.path}/>)}</g>
+  <g class="mt-graph-terminals"><rect x={topology.centre-50} y="10" width="100" height="32" rx="16"/><text x={topology.centre} y="32">START</text><rect x={topology.centre-50} y={topology.endY} width="100" height="32" rx="16"/><text x={topology.centre} y={topology.endY+22}>END</text></g>
+  {topology.nodes.map(node => <g class={`mt-graph-${node.kind}-node`}>
+    <rect x={node.x} y={node.y} width={node.width} height="76" rx="9"/>
+    <text class:list={['mt-graph-node-name', {'mt-graph-long-name':node.name.length>24}]} x={node.x+node.width/2} y={node.y+31}>{node.name}</text>
+    <text class:list={['mt-graph-node-hint', {'mt-graph-small-hint':node.width<200}]} x={node.x+node.width/2} y={node.y+56}>{labels[node.hint]}</text>
+  </g>)}
+  <g class="mt-graph-edge-labels">{topology.labels.map(label => <>
+    {label.key==='clarify' && <rect x={label.centred ? label.x-50 : label.x-4} y={label.y-17} width="100" height="25" fill="#f7fafc"/>}
+    <text x={label.x} y={label.y} text-anchor={label.centred ? 'middle' : 'start'}>{labels[label.key]}</text>
+  </>)}</g>
+</svg>

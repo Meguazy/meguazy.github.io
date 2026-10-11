@@ -1,0 +1,77 @@
+---
+import type { Language } from '../data/site';
+import MoneyExperiments from './MoneyExperiments.astro';
+import MoneyGraphPreview from './MoneyGraphPreview.astro';
+import { moneyExperiments } from '../data/moneyExperiments';
+import { moneyStudy } from '../data/moneyStudy';
+import { moneyTechnical } from '../data/moneyTechnical';
+import { moneyDashboard } from '../data/moneyDashboard';
+const { lang } = Astro.props as { lang: Language };
+const m = moneyStudy[lang];
+const t = moneyTechnical[lang];
+const d = moneyDashboard[lang];
+const chapters = [
+  { id: 'architecture', label: t.nav[0] },
+  { id: 'message-flow', label: t.nav[1] },
+  { id: 'decisions', label: t.nav[3] },
+  { id: 'bot-demo', label: t.nav[5] },
+  { id: 'financial-model', label: t.nav[2] },
+  { id: 'dashboard-demo', label: d.overview },
+  { id: 'model-experiments', label: moneyExperiments[lang].nav },
+  { id: 'verification', label: t.nav[4] },
+];
+const budgets = [{name:'Alimentari',spend:82,target:100},{name:'Casa',spend:8,target:40},{name:'Trasporti',spend:30,target:50}];
+---
+<div class="money-technical section-wrap">
+  <div class="money-story-intro"><h2>{m.heading}</h2><p>{m.lead}</p></div>
+  <ul class="mt-stack" aria-label="Stack"><li>Python</li><li>LangChain / LangGraph</li><li>llama.cpp</li><li>PostgreSQL</li><li>FastAPI / React</li><li>Langfuse</li><li>Restic</li></ul>
+  <nav class="mt-index" aria-label={m.heading}>{chapters.map(chapter=><a href={`#${chapter.id}`}>{chapter.label}</a>)}</nav>
+
+  <section id="architecture" class="mt-section" aria-labelledby="mt-architecture">
+    <div class="mt-section-heading"><h2 id="mt-architecture">{t.architecture}</h2><p>{t.architectureText}</p></div>
+    <figure class="mt-architecture">
+      <div class="mt-external"><p>{t.external}</p><div class="mt-node">{t.nodes[0]}</div><span class="mt-arrow" aria-hidden="true">↓</span></div>
+      <div class="mt-local"><p class="mt-boundary-label">{t.local}</p>
+        <div class="mt-pipeline"><div class="mt-node">{t.nodes[1]}</div><span class="mt-arrow" aria-hidden="true">↓</span><div class="mt-node mt-store">{t.nodes[2]}</div><span class="mt-arrow" aria-hidden="true">↓</span><div class="mt-node">{t.nodes[3]}</div><span class="mt-arrow" aria-hidden="true">↓</span><MoneyGraphPreview lang={lang} label={t.nodes[4]} /></div>
+        <div class="mt-web-pipeline"><div class="mt-node">{t.nodes[7]}</div><span class="mt-arrow" aria-hidden="true">↓</span><div class="mt-node">{t.nodes[8]}</div></div>
+        <div class="mt-domain"><div class="mt-domain-connectors" aria-hidden="true"><span>↓</span><span>↓</span></div><div class="mt-node mt-authority">{t.nodes[5]}</div><span class="mt-arrow" aria-hidden="true">↓</span><div class="mt-node mt-store">{t.nodes[6]}</div></div>
+        <div class="mt-support"><p>{t.inference}</p><p>{t.observation}</p></div>
+      </div><figcaption>{t.architectureCaption}</figcaption>
+    </figure>
+  </section>
+
+  <section id="message-flow" class="mt-section" aria-labelledby="mt-flow">
+    <div class="mt-section-heading"><h2 id="mt-flow">{t.flow}</h2><p>{t.flowText}</p></div>
+    <ol class="mt-sequence">{t.stages.map((stage,i)=><li><span class="mt-step-number">{i+1}</span><strong>{stage}</strong>{i<3 && <span class="mt-sequence-arrow" aria-hidden="true">→</span>}</li>)}</ol>
+    <div class="mt-branches">{t.branches.map(([title,body])=><section><h3>{title}</h3><p>{body}</p></section>)}</div>
+  </section>
+
+  <section id="decisions" class="mt-section" aria-labelledby="mt-decisions">
+    <div class="mt-section-heading"><h2 id="mt-decisions">{t.decisions}</h2></div>
+    <dl class="mt-decisions">{t.decisionRows.map(([title,choice,cost])=><div><dt>{title}</dt><dd><p>{choice}</p><p class="mt-tradeoff">{cost}</p></dd></div>)}</dl>
+  </section>
+
+  <section id="bot-demo" class="mt-section" aria-labelledby="mt-bot">
+    <div class="mt-section-heading"><h2 id="mt-bot">{t.bot}</h2><p>{t.botText}</p></div>
+    <figure class="mt-bot-figure"><figcaption class="mt-simulation-label">{t.simulation}</figcaption>
+      <div class="mt-chat" lang="it"><div class="mt-chat-header">Money Tracker <span>Demo</span></div><div class="mt-chat-messages"><div class="mt-chat-user"><span>Messaggio di esempio</span><p>Oggi ho speso 36 euro: 28 per alimentari e 8 per la casa. Ho pagato con 12 euro di buoni e 24 con la carta.</p></div><div class="mt-chat-bot"><span>Risposta illustrativa</span><p><strong>Bozza di spesa: 36,00 €</strong></p><p>Alimentari 28,00 € · Casa 8,00 €<br/>Buoni 12,00 € · Carta 24,00 €</p><p>In attesa della tua conferma.</p><div class="mt-chat-controls" aria-hidden="true"><span>Conferma</span><span>Modifica</span><span>Annulla</span></div></div></div></div>
+    </figure>
+  </section>
+
+  <section id="financial-model" class="mt-section" aria-labelledby="mt-rules">
+    <div class="mt-section-heading"><h2 id="mt-rules">{t.rules}</h2><p>{t.rulesText}</p></div>
+    <figure class="mt-allocation"><figcaption>{t.example}</figcaption><div class="mt-allocation-grid"><div class="mt-total"><span>{t.dimensions[0]}</span><strong>€36.00</strong><code>EUR · 3600</code></div><div class="mt-allocation-dimension"><h3>{t.dimensions[1]}</h3><p><span>{t.allocationLabels[0]}</span><strong>€28.00</strong></p><p><span>{t.allocationLabels[1]}</span><strong>€8.00</strong></p></div><div class="mt-allocation-dimension"><h3>{t.dimensions[2]}</h3><p><span>{t.allocationLabels[2]}</span><strong>€12.00</strong></p><p><span>{t.allocationLabels[3]}</span><strong>€24.00</strong></p></div></div><p class="mt-invariant">{t.invariant}</p></figure>
+    <ul class="mt-rule-notes">{t.rulesDetails.map(rule=><li>{rule}</li>)}</ul>
+  </section>
+
+  <section id="dashboard-demo" class="mt-section" aria-labelledby="mt-dashboard">
+    <div class="mt-section-heading"><h2 id="mt-dashboard">{d.heading}</h2><p>{d.text}</p></div><p class="mt-simulation-label">{d.label}</p>
+    <figure class="mt-dashboard-figure"><h3>{d.overview}</h3><div class="mt-dashboard" lang="it"><div class="mt-dashboard-top"><strong>Money Tracker</strong><span>Quadro · Marzo 2026 · Demo</span></div><div class="mt-dashboard-body"><h4>Dove stanno andando i tuoi soldi</h4><p class="mt-dashboard-note">Solo movimenti registrati · 3 movimenti fittizi</p><dl class="mt-metrics"><div><dt>Spesa netta</dt><dd>120,00 €</dd></div><div><dt>Fondi personali</dt><dd>108,00 €</dd></div><div><dt>Benefit</dt><dd>12,00 €</dd></div></dl><h5>Budget sotto controllo</h5><p class="mt-dashboard-note">Spesa registrata / obiettivo mensile</p><div class="mt-budget-bars">{budgets.map(b=><div><div class="mt-budget-label"><strong>{b.name}</strong><span>{b.spend},00 € / {b.target},00 €</span></div><div class="mt-budget-track"><span style={`width:${b.spend/b.target*100}%`}></span></div></div>)}</div></div></div><figcaption>{d.captions[0]}</figcaption></figure>
+    <figure class="mt-dashboard-figure"><h3>{d.movements}</h3><div class="mt-dashboard" lang="it"><div class="mt-dashboard-top"><strong>Movimenti</strong><span>Demo · sola rappresentazione</span></div><div class="mt-dashboard-body"><div class="mt-transaction-heading"><h4>Spesa di esempio</h4><span>Registrato</span><strong>36,00 €</strong></div><div class="mt-transaction-allocations"><section><h5>Categorie</h5><p><span>Alimentari</span><strong>28,00 €</strong></p><p><span>Casa</span><strong>8,00 €</strong></p><p class="mt-reconciled">Somma: 36,00 € · riconciliata</p></section><section><h5>Fonti di pagamento</h5><p><span>Buoni</span><strong>12,00 €</strong></p><p><span>Carta</span><strong>24,00 €</strong></p><p class="mt-reconciled">Somma: 36,00 € · riconciliata</p></section></div><div class="mt-dashboard-controls" aria-hidden="true"><span>Modifica movimento</span><span>Annulla movimento</span></div></div></div><figcaption>{d.captions[1]}</figcaption></figure>
+  </section>
+
+  <MoneyExperiments lang={lang} />
+
+  <section id="verification" class="mt-section" aria-labelledby="mt-verification"><div class="mt-section-heading"><h2 id="mt-verification">{t.verification}</h2></div><div class="mt-verification"><section><h3>{t.verificationLabels[0]}</h3><p>{t.softwareTests}</p></section><section><h3>{t.verificationLabels[1]}</h3><p>{m.steps[3].body}</p></section></div><p class="mt-operations">{t.operations}</p><section class="mt-development"><h3>{m.steps[2].title}</h3><p>{m.steps[2].body}</p></section></section>
+  <div class="money-story-end"><section><h3>{m.statusTitle}</h3><p>{m.status}</p></section><section><h3>{m.contributionTitle}</h3><p>{m.contributionText}</p></section></div>
+</div>

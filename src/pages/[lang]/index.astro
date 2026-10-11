@@ -1,0 +1,33 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { experienceNarrative } from '../../data/experienceNarrative';
+import ProjectRow from '../../components/ProjectRow.astro';
+import JourneyFlow from '../../components/JourneyFlow.astro';
+import { copy, languages, projectIds, projectsPath, experiencePath, projectPath, type Language } from '../../data/site';
+export function getStaticPaths() { return languages.map(lang => ({ params: { lang } })); }
+const lang = Astro.params.lang as Language;
+const t = copy[lang];
+const n = experienceNarrative[lang];
+
+---
+<SiteLayout lang={lang} title={t.hero.title} description={t.hero.intro} section="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="hero-name">{t.hero.kicker}<span aria-hidden="true" class="name-rule"></span></p>
+      <h1>{t.hero.title}</h1>
+      <p class="hero-intro">{t.hero.intro}</p>
+      <div class="hero-actions"><a class="button-primary" href={experiencePath(lang)}>{t.hero.experience}<span aria-hidden="true">↗</span></a><a class="button-text" href={projectsPath(lang)}>{t.hero.projects}</a></div>
+    </div>
+    <aside class="hero-proof" aria-label={t.nav.experience}>
+      <div class="hero-proof-current"><span>{t.experience.present}</span><h2>AI Engineer</h2><p>Datapizza</p></div>
+      <div class="hero-proof-research"><p>University of Camerino <span>{t.experience.researchDates}</span></p><ul>{projectIds.slice(0,3).map(id => <li><a href={projectPath(lang,id)}>{t.projects[id].title}</a></li>)}</ul></div>
+    </aside>
+  </section>
+  <section class="career-preview section-wrap" aria-labelledby="career-heading">
+    <div class="career-preview-head"><div><h2 id="career-heading">{n.timelineTitle}</h2><p>{n.overview}</p></div><a class="section-more" href={experiencePath(lang)}>{t.hero.experience}<span aria-hidden="true">↗</span></a></div>
+    <JourneyFlow lang={lang} />
+  </section>
+  <section class="focus-band" aria-labelledby="focus-heading"><span class="section-marker" aria-hidden="true"></span><h2 id="focus-heading">{t.home.focusTitle}</h2><p>{t.home.focusText}</p></section>
+  <section class="section-wrap work-section" aria-labelledby="work-heading"><div class="section-heading"><div><h2 id="work-heading">{t.home.workTitle}</h2><p>{t.home.workText}</p></div><a class="section-more" href={projectsPath(lang)}>{t.home.seeAll}<span aria-hidden="true">↗</span></a></div><div class="project-list">{projectIds.map((id, index) => <ProjectRow lang={lang} id={id} index={index} />)}</div></section>
+  <section class="section-wrap about-strip" aria-labelledby="about-heading"><div class="about-decoration" aria-hidden="true"><span></span><span></span><span></span></div><div><h2 id="about-heading">{t.home.aboutTitle}</h2><p>{t.home.aboutText}</p></div></section>
+</SiteLayout>

@@ -1,0 +1,19 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { copy, languages, projectIds, projectPath, type Language } from '../../data/site';
+import { experienceNarrative } from '../../data/experienceNarrative';
+export function getStaticPaths() { return languages.map(lang => ({ params: { lang } })); }
+const lang = Astro.params.lang as Language;
+const t = copy[lang];
+const n = experienceNarrative[lang];
+---
+<SiteLayout lang={lang} title={t.experience.title} description={n.overview} section="experience">
+  <section class="page-intro section-wrap"><span class="page-index">01 / {t.nav.experience}</span><h1>{t.experience.title}</h1><p>{n.overview}</p></section>
+  <section class="section-wrap experience-section" aria-label={t.experience.title}>
+    <div class="timeline-row"><div class="timeline-date">{t.experience.currentDates}</div><div><h2>AI Engineer</h2><p class="timeline-org">Datapizza</p><p>{n.current}</p></div></div>
+    <div class="timeline-row"><div class="timeline-date">{t.experience.researchDates}</div><div><h2>{t.experience.research}</h2><p class="timeline-org">University of Camerino</p><p>{n.research}</p><div class="timeline-project-links"><span>{n.related}</span>{projectIds.slice(0, 3).map(id => <a href={projectPath(lang, id)}><strong>{t.projects[id].title}</strong><span>{t.projects[id].summary}</span></a>)}</div></div></div>
+    <div class="timeline-row"><div class="timeline-date">{t.experience.dataDates}</div><div><h2>{t.experience.data}</h2><p class="timeline-org">Sync Lab S.r.l.</p><p>{n.data}</p></div></div>
+    <div class="timeline-row"><div class="timeline-date">{t.experience.backendDates}</div><div><h2>{t.experience.backend}</h2><p class="timeline-org">Par-Tec S.p.A.</p><p>{n.backend}</p></div></div>
+  </section>
+  <section class="section-wrap education-section" aria-labelledby="education-heading"><div><span class="small-rule"></span><h2 id="education-heading">{t.experience.education}</h2></div><div class="degree-list"><p>{t.experience.degree1}</p><p>{t.experience.degree2}</p><span>University of Camerino</span></div></section>
+</SiteLayout>

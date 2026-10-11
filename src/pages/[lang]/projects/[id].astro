@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import ProjectRow from '../../../components/ProjectRow.astro';
+import { copy, languages, projectIds, projectsPath, type Language, type ProjectId } from '../../../data/site';
+import { depth, depthHeading } from '../../../data/depth';
+import MoneyTechnicalCase from '../../../components/MoneyTechnicalCase.astro';
+export function getStaticPaths() { return languages.flatMap(lang => projectIds.map(id => ({ params: { lang, id } }))); }
+const lang = Astro.params.lang as Language;
+const id = Astro.params.id as ProjectId;
+const t = copy[lang];
+const project = t.projects[id];
+const related = projectIds.filter(item => item !== id).slice(0, 2);
+---
+<SiteLayout lang={lang} title={project.title} description={project.summary} section="projects" project={id}>
+  <article>
+    <header class="case-intro section-wrap"><a href={projectsPath(lang)} class="back-link"><span aria-hidden="true">←</span>{t.projectsPage.back}</a><p class="case-field">{project.field}</p><h1>{project.title}</h1><p class="case-summary">{project.summary}</p></header>
+    {id !== 'money-tracker' && <div class="case-visual" aria-hidden="true"><div class="case-visual-inner"><span class="case-line one"></span><span class="case-line two"></span><span class="case-line three"></span><span class="case-node a"></span><span class="case-node b"></span><span class="case-node c"></span></div></div>}
+    {id === 'money-tracker' ? <><MoneyTechnicalCase lang={lang} /><div class="section-wrap mt-disclosure"><div class="case-section case-disclosure"><h2>{t.projectsPage.boundary}</h2><p>{project.boundary}</p></div></div></> : <div class="case-content section-wrap"><div class="case-section"><h2>{t.projectsPage.context}</h2><p>{project.context}</p></div><div class="case-section"><h2>{t.projectsPage.role}</h2><p>{project.role}</p></div><div class="case-section"><h2>{t.projectsPage.approach}</h2><p>{project.approach}</p></div><div class="case-section case-section-depth"><h2>{depthHeading[lang]}</h2><p>{depth[lang][id]}</p></div><div class="case-section case-disclosure"><h2>{t.projectsPage.boundary}</h2><p>{project.boundary}</p></div></div>}
+  </article>
+  <section class="section-wrap related-section" aria-labelledby="related-heading"><h2 id="related-heading">{t.projectsPage.related}</h2><div class="project-list">{related.map((item, index) => <ProjectRow lang={lang} id={item} index={index} />)}</div></section>
+</SiteLayout>

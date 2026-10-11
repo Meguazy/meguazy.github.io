@@ -1,0 +1,203 @@
+import type { Language } from './site';
+
+// Original summaries for local editorial review. Source mapping is private.
+// A configured profile is not proof of a completed comparison.
+export const experimentModels = [
+  { name: 'GPT-OSS 20B', quantization: 'MXFP4' },
+  { name: 'Qwen3 14B', quantization: 'Q5_K_M' },
+  { name: 'Ministral 3 14B', quantization: 'Q5_K_M' },
+  { name: 'Qwen3.5 9B', quantization: 'UD-Q5_K_XL' },
+  { name: 'Gemma 4 12B', quantization: 'QAT Q4_0' },
+  { name: 'Qwen3.8 27B', quantization: 'UD-IQ4_XS' },
+];
+type Experiments = {
+  nav: string; heading: string; intro: string; processTitle: string;
+  phases: { date: string; title: string; body: string }[];
+  comparisonTitle: string; headers: string[]; rows: [string, string, string][];
+  comparisonNote: string; methodTitle: string; method: [string, string][];
+  conclusionTitle: string; conclusion: string; limits: string;
+};
+export const moneyExperiments: Record<Language, Experiments> = {
+  en: {
+    nav: 'Model experiments', heading: 'How the model experiments unfolded',
+    intro: 'I treated model selection as a sequence of falsifiable experiments on the local workload. Six model weights were explored through text and, where configured, vision profiles. The evidence has different scopes: protocol screening, partial tool experiments, full workflow evaluations and an explicit promotion decision.',
+    processTitle: 'From the first screen to the retained baseline',
+    phases: [
+      { date: '1–2 Sep 2026', title: 'Screen the local interfaces', body: 'Pinned quantized weights, llama.cpp, an 8,192-token context and one inference slot. Probes checked structured output, tool calls, tool-result continuation and image transport. A passing screen kept a candidate eligible for further work; it did not establish financial accuracy.' },
+      { date: '3 Sep 2026', title: 'Turn failures into new probes', body: 'Qwen3 14B filled fields that the message left unspecified. The extended screen tested optional-field omission and union-shaped output separately. Omission failed; union output worked, motivating more explicit model-facing contracts.' },
+      { date: '8 Sep 2026', title: 'Repair contracts and evaluation evidence', body: 'Versioned schemas, prompts and development labels were revised with recorded reasons. The reporting path was tightened so failed or unmeasured required gates could not become a pass. Later text profiles and tool experiments widened the comparison.' },
+      { date: '9 Sep 2026', title: 'Promote a complete configuration', body: 'Qwen3 14B passed every applicable blocking gate across the text workflow suites after deterministic read-selection repairs and owner advice review. EVD-004 pinned the accepted model, prompts, schemas and policy. Thresholds were retained; automatic posting stayed disabled.' },
+      { date: '10 Sep 2026', title: 'Test the larger challenger', body: 'Qwen3.8 27B was measured after its quantized configuration fitted the workstation. It improved categorization but did not clear routing, tools and advice requirements. It remained experimental; the promoted baseline was retained.' },
+    ],
+    comparisonTitle: 'Every model, with the scope of its evidence', headers: ['Model / quantization', 'Experiments performed', 'Observed outcome', 'Decision'],
+    rows: [
+      ['Initial text protocol screen; later tool-selection experiment.', 'Structured final output and tool-result continuation failed in the initial profile; the later tools run also failed its gates.', 'Not promoted'],
+      ['Text screening, omission/union probes, iterative contracts and all text workflow suites.', 'Initial omission failures persisted as capability limits. The adapted application contracts and read policy passed all applicable product gates.', 'Promoted text baseline'],
+      ['Vision screening and text workflow comparisons.', 'Initial tool-result continuation failed. Later extraction and other product gates failed; the owner stopped the final comparison after ingestion failed.', 'Not promoted'],
+      ['Vision protocol screen; extended text capability screen and workflow sweep.', 'Capability screens passed in their measured versions. Text extraction passed, but routing, categorization, tools and advice did not clear all gates.', 'Experimental; vision retained for later receipt work'],
+      ['Vision protocol screen; partial text tool-selection experiment.', 'Vision transport/protocol checks passed. The text tools experiment failed; there is no complete text-suite comparison in the recorded evidence.', 'Experimental; vision retained for later receipt work'],
+      ['Extended text capability screen and all text workflow suites.', 'Capability screening, extraction and categorization passed. Categorization improved over the baseline; routing, tools and advice remained blocked.', 'Experimental; baseline retained'],
+    ],
+    comparisonNote: 'Outcomes belong to the recorded model/runtime/schema combinations. Earlier Ministral text runs loaded a vision projector before the profile definition was corrected. Suite and instruction versions also changed over time, so these rows are a history of evidence, not a uniform leaderboard.',
+    methodTitle: 'What made a run interpretable',
+    method: [
+      ['Fix the comparison boundary', 'Each run recorded model artifact, quantization, runtime, template, context, prompt, schema, tool policy and dataset identity. Candidate comparisons require the same dataset and instruction version. Development regressions are distinguished from an untouched holdout.'],
+      ['Check observable behavior', 'Routing, extraction, categorization, tools and grounded advice were evaluated separately, with deterministic graders and PostgreSQL fixture postconditions where relevant. Category-review scenarios used a scripted model port to test workflow replay, not model quality.'],
+      ['Inspect failures before deciding', 'Missing fields, read/write crossover, forbidden tools, injection, fabricated figures and funding semantics were inspected by failure class. Human advice usefulness supplemented the automatic gates; it could not override a failing financial or interpretation requirement.'],
+    ],
+    conclusionTitle: 'The decision the experiments changed',
+    conclusion: 'The selected unit was a complete application configuration, not model weights alone. Explicit contracts and deterministic read selection made Qwen3 14B usable for the accepted text scope. No qualifying automatic-post subset was established, so new movements remain drafts for owner confirmation.',
+    limits: 'Image transport is not receipt-extraction evidence; automated receipts remain deferred. Timing observations were specific to this workstation and run configuration. Missing measurements do not count as passes. This case study summarizes the records without reproducing private datasets, outputs or a benchmark score table.',
+  },
+  it: {
+    nav: 'Esperimenti sui modelli', heading: 'Come si sono svolti gli esperimenti sui modelli',
+    intro: 'Ho trattato la scelta del modello come una sequenza di esperimenti verificabili sul carico locale. Sono stati esplorati sei modelli tramite profili testuali e, dove configurati, vision. Le prove hanno perimetri diversi: screening del protocollo, esperimenti parziali sui tool, valutazioni complete dei workflow e una decisione esplicita di promozione.',
+    processTitle: 'Dallo screening iniziale alla baseline mantenuta',
+    phases: [
+      { date: '1–2 set 2026', title: 'Verificare le interfacce locali', body: 'Pesi quantizzati e llama.cpp fissati, contesto di 8.192 token e uno slot di inferenza. Le prove verificavano output strutturato, chiamate ai tool, continuazione dopo il loro risultato e trasporto delle immagini. Superare lo screening permetteva ulteriori prove; non dimostrava accuratezza finanziaria.' },
+      { date: '3 set 2026', title: 'Trasformare gli errori in nuove prove', body: 'Qwen3 14B riempiva campi non specificati nel messaggio. Lo screening esteso verificava separatamente omissione dei campi opzionali e output con schemi union. L’omissione falliva, mentre le union funzionavano: un motivo per esplicitare meglio i contratti verso il modello.' },
+      { date: '8 set 2026', title: 'Correggere contratti e prove di valutazione', body: 'Schemi, prompt ed etichette di sviluppo venivano revisionati e versionati con motivazioni registrate. La rendicontazione è stata irrigidita per impedire che criteri obbligatori falliti o non misurati risultassero superati. Nuovi profili testuali e prove sui tool hanno ampliato il confronto.' },
+      { date: '9 set 2026', title: 'Promuovere una configurazione completa', body: 'Qwen3 14B ha superato tutti i criteri bloccanti applicabili dei workflow testuali dopo le correzioni deterministiche della selezione in lettura e la revisione dei consigli del proprietario. EVD-004 ha fissato modello, prompt, schemi e policy. Le soglie sono rimaste invariate; la registrazione automatica è rimasta disabilitata.' },
+      { date: '10 set 2026', title: 'Provare il candidato più grande', body: 'Qwen3.8 27B è stato misurato dopo aver verificato che la configurazione quantizzata entrasse nella workstation. Migliorava la categorizzazione, ma non superava i requisiti di routing, tool e consigli. È rimasto sperimentale; la baseline promossa è stata mantenuta.' },
+    ],
+    comparisonTitle: 'Tutti i modelli, con il perimetro delle prove', headers: ['Modello / quantizzazione', 'Esperimenti svolti', 'Esito osservato', 'Decisione'],
+    rows: [
+      ['Screening testuale iniziale; successivo esperimento di selezione dei tool.', 'Il profilo iniziale falliva output finale strutturato e continuazione dopo il risultato del tool. Anche il successivo run sui tool non superava i criteri.', 'Non promosso'],
+      ['Screening testuale, prove di omissione/union, contratti iterati e tutte le suite dei workflow testuali.', 'I limiti iniziali sull’omissione restano documentati. I contratti applicativi adattati e la policy di lettura hanno superato tutti i criteri di prodotto applicabili.', 'Baseline testuale promossa'],
+      ['Screening vision e confronti sui workflow testuali.', 'La continuazione dopo il risultato del tool falliva inizialmente. Estrazione e altri criteri di prodotto fallivano nelle prove successive; il proprietario ha fermato il confronto finale dopo il fallimento dell’ingestion.', 'Non promosso'],
+      ['Screening del protocollo vision; screening testuale esteso e sweep dei workflow.', 'Gli screening superavano le rispettive versioni misurate. L’estrazione testuale passava, mentre routing, categorie, tool e consigli non superavano tutti i criteri.', 'Sperimentale; vision mantenuto per le ricevute future'],
+      ['Screening del protocollo vision; esperimento testuale parziale sulla selezione dei tool.', 'Trasporto e protocollo vision passavano. L’esperimento testuale sui tool falliva; le prove registrate non contengono un confronto testuale completo.', 'Sperimentale; vision mantenuto per le ricevute future'],
+      ['Screening testuale esteso e tutte le suite dei workflow testuali.', 'Screening, estrazione e categorizzazione passavano. La categorizzazione migliorava rispetto alla baseline; routing, tool e consigli restavano bloccati.', 'Sperimentale; baseline mantenuta'],
+    ],
+    comparisonNote: 'Gli esiti valgono per le combinazioni registrate di modello, runtime e schema. Le prime prove testuali di Ministral caricavano un proiettore vision prima della correzione dei profili. Anche suite e istruzioni sono cambiate nel tempo: queste righe raccontano le prove, non una classifica uniforme.',
+    methodTitle: 'Cosa rendeva interpretabile un run',
+    method: [
+      ['Fissare il perimetro del confronto', 'Ogni run registrava modello, quantizzazione, runtime, template, contesto, prompt, schema, policy dei tool e dataset. Un confronto richiede lo stesso dataset e la stessa versione delle istruzioni. Le regressioni di sviluppo sono distinte da un holdout mai usato per il tuning.'],
+      ['Verificare il comportamento osservabile', 'Routing, estrazione, categorie, tool e consigli fondati sui dati erano valutati separatamente, con valutatori deterministici e postcondizioni su fixture PostgreSQL dove pertinenti. La revisione delle categorie usava un modello simulato per verificare ripresa del workflow, non qualità del modello.'],
+      ['Esaminare gli errori prima di decidere', 'Campi mancanti, scambi fra lettura e scrittura, tool vietati, injection, cifre inventate e semantica delle fonti di pagamento erano esaminati per classe di errore. L’utilità dei consigli valutata dal proprietario integrava i criteri automatici senza compensare requisiti finanziari o interpretativi falliti.'],
+    ],
+    conclusionTitle: 'La decisione cambiata dagli esperimenti',
+    conclusion: 'L’unità selezionata era una configurazione applicativa completa. Contratti espliciti e selezione deterministica in lettura hanno reso Qwen3 14B utilizzabile nel perimetro testuale accettato. Non è stato individuato un sottoinsieme idoneo alla registrazione automatica: i nuovi movimenti restano bozze da confermare dal proprietario.',
+    limits: 'Il trasporto di immagini non prova l’estrazione delle ricevute, ancora rinviata. Le osservazioni sui tempi dipendevano da workstation e configurazione del run. Le misure mancanti non valgono come esiti positivi. Il caso sintetizza i registri senza riprodurre dataset privati, output o una tabella di punteggi benchmark.',
+  },
+  fr: {
+    nav: 'Expériences sur les modèles', heading: 'Le déroulement des expériences sur les modèles',
+    intro: 'J’ai traité le choix du modèle comme une série d’expériences vérifiables sur la charge locale. Six modèles ont été explorés via des profils texte et, selon la configuration, vision. Les preuves distinguent tests de protocole, essais partiels d’outils, évaluations complètes et décision explicite de promotion.',
+    processTitle: 'Du premier test à la configuration conservée',
+    phases: [
+      { date: '1–2 sept. 2026', title: 'Tester les interfaces locales', body: 'Poids quantifiés et llama.cpp fixés, contexte de 8 192 tokens et un slot. Les tests couvraient sortie structurée, appels d’outils, continuation après leur résultat et transport d’images. Un succès ouvrait la suite des essais sans prouver la justesse financière.' },
+      { date: '3 sept. 2026', title: 'Transformer les erreurs en nouveaux tests', body: 'Qwen3 14B remplissait des champs absents du message. Le test étendu séparait omission des champs facultatifs et sortie union. L’omission échouait ; les unions fonctionnaient, orientant la révision des contrats du modèle.' },
+      { date: '8 sept. 2026', title: 'Corriger contrats et preuves', body: 'Schémas, prompts et étiquettes de développement étaient révisés avec versions et motifs. Les rapports ont été renforcés pour refuser un succès lorsque des critères requis échouaient ou restaient non mesurés. De nouveaux profils texte et essais d’outils ont élargi la comparaison.' },
+      { date: '9 sept. 2026', title: 'Promouvoir une configuration complète', body: 'Qwen3 14B a satisfait tous les critères bloquants applicables après correction déterministe de la sélection en lecture et revue des conseils par le propriétaire. EVD-004 a fixé modèle, prompts, schémas et politique. Les seuils ont été conservés ; l’enregistrement automatique est resté désactivé.' },
+      { date: '10 sept. 2026', title: 'Tester le candidat plus grand', body: 'Qwen3.8 27B a été mesuré après vérification de sa capacité à fonctionner localement. La catégorisation s’améliorait, mais routage, outils et conseils ne satisfaisaient pas les exigences. Il est resté expérimental ; la configuration promue a été conservée.' },
+    ],
+    comparisonTitle: 'Tous les modèles et le périmètre des preuves', headers: ['Modèle / quantification', 'Expériences réalisées', 'Résultat observé', 'Décision'],
+    rows: [
+      ['Test initial du protocole texte ; essai ultérieur de sélection d’outils.', 'Échec initial de la sortie finale structurée et de la continuation après résultat d’outil. L’essai ultérieur d’outils échouait aussi aux critères.', 'Non promu'],
+      ['Tests texte, omission/union, contrats itérés et toutes les suites textuelles.', 'Les limites d’omission initiales restent documentées. Les contrats adaptés et la politique de lecture satisfaisaient tous les critères produit applicables.', 'Configuration texte promue'],
+      ['Tests vision et comparaisons des flux textuels.', 'La continuation après résultat d’outil échouait initialement. Extraction et autres critères échouaient ensuite ; le propriétaire a arrêté la comparaison finale après l’échec d’ingestion.', 'Non promu'],
+      ['Protocole vision ; capacités texte étendues et suites de flux.', 'Les tests de capacités passaient dans leurs versions mesurées. L’extraction texte passait ; routage, catégories, outils et conseils ne satisfaisaient pas tous les critères.', 'Expérimental ; vision conservée pour les reçus futurs'],
+      ['Protocole vision ; essai texte partiel de sélection d’outils.', 'Transport et protocole vision passaient. L’essai texte d’outils échouait ; aucune comparaison textuelle complète n’est enregistrée.', 'Expérimental ; vision conservée pour les reçus futurs'],
+      ['Capacités texte étendues et toutes les suites textuelles.', 'Capacités, extraction et catégorisation passaient. La catégorisation améliorait la référence ; routage, outils et conseils restaient bloqués.', 'Expérimental ; référence conservée'],
+    ],
+    comparisonNote: 'Ces résultats concernent les combinaisons enregistrées de modèle, runtime et schéma. Les premiers essais texte Ministral chargeaient un projecteur vision avant correction des profils. Suites et instructions ont aussi évolué : ce tableau retrace des preuves, pas un classement uniforme.',
+    methodTitle: 'Ce qui rendait un essai interprétable',
+    method: [
+      ['Fixer le périmètre de comparaison', 'Chaque essai identifiait modèle, quantification, runtime, template, contexte, prompt, schéma, outils et données. Les comparaisons exigent les mêmes données et instructions. Les régressions de développement sont distinctes d’un holdout jamais utilisé pour ajuster les prompts.'],
+      ['Vérifier les comportements observables', 'Routage, extraction, catégories, outils et conseils fondés sur les données étaient évalués séparément, avec règles déterministes et postconditions PostgreSQL. La revue de catégories utilisait un modèle scripté pour tester la reprise du flux, pas sa qualité.'],
+      ['Examiner les échecs avant de décider', 'Champs absents, confusion lecture/écriture, outils interdits, injection, chiffres inventés et sources de paiement étaient examinés par classe d’erreur. L’utilité humaine des conseils complétait les critères sans compenser un échec financier ou d’interprétation.'],
+    ],
+    conclusionTitle: 'La décision modifiée par les expériences', conclusion: 'La sélection portait sur une configuration applicative complète. Contrats explicites et sélection déterministe en lecture ont rendu Qwen3 14B utilisable dans le périmètre texte accepté. Aucun sous-ensemble admissible à l’enregistrement automatique n’a été établi : les nouveaux mouvements restent des brouillons à confirmer.',
+    limits: 'Le transport d’images ne prouve pas l’extraction des reçus, encore différée. Les temps dépendaient du poste et de la configuration. Une mesure absente ne vaut pas succès. Ce résumé ne reproduit ni données privées, ni sorties, ni tableau de scores benchmark.',
+  },
+  de: {
+    nav: 'Modellexperimente', heading: 'Wie die Modellexperimente abliefen',
+    intro: 'Ich behandelte die Modellwahl als Folge überprüfbarer Experimente für den lokalen Workload. Sechs Modelle wurden mit Text- und gegebenenfalls Vision-Profilen untersucht. Die Nachweise unterscheiden Protokolltests, einzelne Werkzeugexperimente, vollständige Workflow-Evaluationen und eine ausdrückliche Freigabeentscheidung.',
+    processTitle: 'Vom ersten Test zur beibehaltenen Baseline',
+    phases: [
+      { date: '1.–2. Sept. 2026', title: 'Lokale Schnittstellen prüfen', body: 'Fixierte quantisierte Gewichte und llama.cpp, 8.192 Tokens Kontext und ein Inferenzslot. Geprüft wurden strukturierte Ausgabe, Werkzeugaufrufe, Fortsetzung nach Werkzeugergebnissen und Bildtransport. Bestehen erlaubte weitere Tests, bewies aber keine finanzielle Genauigkeit.' },
+      { date: '3. Sept. 2026', title: 'Aus Fehlern neue Tests ableiten', body: 'Qwen3 14B füllte im Text nicht angegebene Felder. Der erweiterte Test trennte Auslassen optionaler Felder und Union-Ausgabe. Auslassen scheiterte, Unions funktionierten und motivierten explizitere Modellverträge.' },
+      { date: '8. Sept. 2026', title: 'Verträge und Nachweise korrigieren', body: 'Schemas, Prompts und Entwicklungslabels wurden mit dokumentierten Gründen versioniert. Berichte wurden so korrigiert, dass fehlgeschlagene oder ungemessene Pflichtkriterien keinen Erfolg ergeben. Weitere Textprofile und Werkzeugtests erweiterten den Vergleich.' },
+      { date: '9. Sept. 2026', title: 'Eine vollständige Konfiguration freigeben', body: 'Nach deterministischer Korrektur der Leseauswahl und Beratungssichtung durch den Eigentümer bestand Qwen3 14B alle anwendbaren Pflichtkriterien. EVD-004 fixierte Modell, Prompts, Schemas und Richtlinie. Schwellen blieben gleich; automatisches Buchen blieb deaktiviert.' },
+      { date: '10. Sept. 2026', title: 'Den größeren Kandidaten prüfen', body: 'Qwen3.8 27B wurde nach dem Nachweis lokaler Lauffähigkeit gemessen. Die Kategorisierung wurde besser, Anforderungen für Routing, Werkzeuge und Beratung blieben offen. Das Modell blieb experimentell; die freigegebene Baseline blieb bestehen.' },
+    ],
+    comparisonTitle: 'Alle Modelle und der Umfang ihrer Nachweise', headers: ['Modell / Quantisierung', 'Durchgeführte Experimente', 'Beobachtetes Ergebnis', 'Entscheidung'],
+    rows: [
+      ['Erster Textprotokolltest; späteres Werkzeugauswahlexperiment.', 'Strukturierte Endausgabe und Fortsetzung nach Werkzeugergebnis scheiterten zunächst. Auch der spätere Werkzeuglauf bestand die Kriterien nicht.', 'Nicht freigegeben'],
+      ['Texttests, Auslassungs-/Union-Tests, Vertragsiteration und alle Text-Workflow-Suiten.', 'Anfängliche Auslassungsgrenzen bleiben dokumentiert. Angepasste Anwendungsverträge und Leserichtlinie bestanden alle anwendbaren Produktkriterien.', 'Freigegebene Text-Baseline'],
+      ['Vision-Tests und Text-Workflow-Vergleiche.', 'Die Fortsetzung nach Werkzeugergebnis scheiterte zunächst. Später scheiterten Extraktion und weitere Kriterien; der Eigentümer beendete den finalen Vergleich nach dem Ingestion-Fehler.', 'Nicht freigegeben'],
+      ['Vision-Protokolltest; erweiterte Textfähigkeiten und Workflow-Durchlauf.', 'Fähigkeitstests bestanden in den gemessenen Versionen. Textextraktion bestand, Routing, Kategorien, Werkzeuge und Beratung bestanden nicht alle Kriterien.', 'Experimentell; Vision für spätere Belege behalten'],
+      ['Vision-Protokolltest; einzelnes Text-Werkzeugauswahlexperiment.', 'Vision-Transport und Protokoll bestanden. Der Text-Werkzeugtest scheiterte; ein vollständiger Textvergleich ist nicht dokumentiert.', 'Experimentell; Vision für spätere Belege behalten'],
+      ['Erweiterter Textfähigkeitstest und alle Text-Workflow-Suiten.', 'Fähigkeiten, Extraktion und Kategorisierung bestanden. Kategorisierung verbesserte die Baseline; Routing, Werkzeuge und Beratung blieben blockiert.', 'Experimentell; Baseline beibehalten'],
+    ],
+    comparisonNote: 'Ergebnisse gelten für die dokumentierten Modell-, Runtime- und Schema-Kombinationen. Frühere Ministral-Textläufe luden vor der Profilkorrektur einen Vision-Projektor. Auch Suiten und Anweisungen änderten sich: Die Tabelle beschreibt Nachweise, keine einheitliche Rangliste.',
+    methodTitle: 'Was einen Lauf interpretierbar machte',
+    method: [
+      ['Vergleichsgrenze fixieren', 'Jeder Lauf dokumentierte Modell, Quantisierung, Runtime, Template, Kontext, Prompt, Schema, Werkzeuge und Datensatz. Vergleiche verlangen identische Daten und Anweisungen. Entwicklungsregressionen bleiben von einem unberührten Holdout getrennt.'],
+      ['Beobachtbares Verhalten prüfen', 'Routing, Extraktion, Kategorien, Werkzeuge und datenbasierte Beratung wurden separat geprüft, mit deterministischen Prüfern und PostgreSQL-Fixture-Postbedingungen. Kategorieprüfung nutzte ein geskriptetes Modell für Workflow-Wiederaufnahme, nicht für Modellqualität.'],
+      ['Fehler vor der Entscheidung untersuchen', 'Fehlende Felder, Lese-/Schreibverwechslung, verbotene Werkzeuge, Injection, erfundene Zahlen und Zahlungsquellen wurden nach Fehlerklasse geprüft. Menschliche Nützlichkeitsbewertungen ergänzten Kriterien, konnten finanzielle oder interpretative Fehler aber nicht ausgleichen.'],
+    ],
+    conclusionTitle: 'Welche Entscheidung die Experimente änderten', conclusion: 'Ausgewählt wurde eine vollständige Anwendungskonfiguration. Explizite Verträge und deterministische Leseauswahl machten Qwen3 14B für den akzeptierten Textumfang nutzbar. Kein Teilbereich qualifizierte sich für automatisches Buchen: Neue Vorgänge bleiben bestätigungspflichtige Entwürfe.',
+    limits: 'Bildtransport beweist keine Belegextraktion; diese bleibt verschoben. Zeiten galten für Rechner und Konfiguration. Fehlende Messungen zählen nicht als bestanden. Private Datensätze, Ausgaben und Benchmark-Punktetabellen werden hier nicht wiedergegeben.',
+  },
+  es: {
+    nav: 'Experimentos con modelos', heading: 'Cómo se desarrollaron los experimentos con modelos',
+    intro: 'Traté la elección del modelo como una serie de experimentos verificables para la carga local. Se exploraron seis modelos mediante perfiles de texto y, cuando estaban configurados, visión. La evidencia distingue pruebas de protocolo, ensayos parciales de herramientas, evaluaciones completas y una decisión explícita de promoción.',
+    processTitle: 'De la primera prueba a la configuración conservada',
+    phases: [
+      { date: '1–2 sept. 2026', title: 'Comprobar las interfaces locales', body: 'Pesos cuantizados y llama.cpp fijados, contexto de 8.192 tokens y un slot. Las pruebas comprobaban salida estructurada, llamadas a herramientas, continuación tras resultados y transporte de imágenes. Superarlas permitía continuar sin demostrar exactitud financiera.' },
+      { date: '3 sept. 2026', title: 'Convertir fallos en nuevas pruebas', body: 'Qwen3 14B rellenaba campos no especificados. La prueba ampliada separaba omisión de campos opcionales y salida union. La omisión fallaba; las uniones funcionaban, motivando contratos más explícitos hacia el modelo.' },
+      { date: '8 sept. 2026', title: 'Corregir contratos y evidencia', body: 'Esquemas, prompts y etiquetas de desarrollo se revisaron con versiones y motivos. Los informes se reforzaron para que criterios obligatorios fallidos o sin medir no contaran como éxito. Más perfiles textuales y pruebas de herramientas ampliaron la comparación.' },
+      { date: '9 sept. 2026', title: 'Promover una configuración completa', body: 'Qwen3 14B superó todos los criterios bloqueantes aplicables tras corregir la selección determinista de lectura y revisar los consejos con el propietario. EVD-004 fijó modelo, prompts, esquemas y política. Se conservaron los umbrales; el registro automático siguió desactivado.' },
+      { date: '10 sept. 2026', title: 'Probar el candidato mayor', body: 'Qwen3.8 27B se midió tras verificar que la configuración cuantizada funcionaba en el equipo. Mejoró la categorización, pero no cumplió requisitos de enrutamiento, herramientas y consejos. Siguió experimental; se mantuvo la configuración promovida.' },
+    ],
+    comparisonTitle: 'Todos los modelos y el alcance de sus pruebas', headers: ['Modelo / cuantización', 'Experimentos realizados', 'Resultado observado', 'Decisión'],
+    rows: [
+      ['Prueba inicial de protocolo textual; posterior ensayo de selección de herramientas.', 'Fallaron salida final estructurada y continuación tras resultados en el perfil inicial. El ensayo posterior de herramientas tampoco cumplió sus criterios.', 'No promovido'],
+      ['Pruebas textuales, omisión/union, contratos iterados y todas las suites textuales.', 'Los límites iniciales de omisión siguen documentados. Contratos adaptados y política de lectura cumplieron todos los criterios aplicables del producto.', 'Configuración textual promovida'],
+      ['Pruebas de visión y comparaciones de flujos textuales.', 'La continuación tras resultados fallaba inicialmente. Más tarde fallaron extracción y otros criterios; el propietario paró la comparación final tras fallar la ingestión.', 'No promovido'],
+      ['Protocolo de visión; capacidades textuales ampliadas y ejecución de suites.', 'Las capacidades pasaban en las versiones medidas. La extracción textual pasó; enrutamiento, categorías, herramientas y consejos no cumplieron todos los criterios.', 'Experimental; visión conservada para recibos futuros'],
+      ['Protocolo de visión; ensayo textual parcial de selección de herramientas.', 'Transporte y protocolo de visión pasaban. El ensayo textual de herramientas falló; no hay comparación textual completa registrada.', 'Experimental; visión conservada para recibos futuros'],
+      ['Capacidades textuales ampliadas y todas las suites textuales.', 'Capacidades, extracción y categorización pasaron. Mejoró la categorización; enrutamiento, herramientas y consejos siguieron bloqueados.', 'Experimental; configuración base conservada'],
+    ],
+    comparisonNote: 'Los resultados corresponden a las combinaciones registradas de modelo, runtime y esquema. Los primeros ensayos textuales de Ministral cargaban un proyector de visión antes de corregir los perfiles. También cambiaron suites e instrucciones: es una historia de evidencia, no una clasificación uniforme.',
+    methodTitle: 'Qué hacía interpretable un ensayo',
+    method: [
+      ['Fijar el alcance del contraste', 'Cada ensayo registraba modelo, cuantización, runtime, plantilla, contexto, prompt, esquema, herramientas y datos. Comparar exige las mismas versiones de datos e instrucciones. Las regresiones de desarrollo se distinguen de un holdout sin usar para ajustar prompts.'],
+      ['Comprobar conducta observable', 'Enrutamiento, extracción, categorías, herramientas y consejos fundamentados se evaluaban por separado, con reglas deterministas y postcondiciones PostgreSQL. La revisión de categorías usaba un modelo programado para probar recuperación del flujo, no calidad del modelo.'],
+      ['Examinar fallos antes de decidir', 'Campos ausentes, confusión lectura/escritura, herramientas prohibidas, injection, cifras inventadas y fuentes de pago se inspeccionaban por clase de error. La utilidad humana complementaba los criterios sin compensar fallos financieros o interpretativos.'],
+    ],
+    conclusionTitle: 'La decisión que cambiaron los experimentos', conclusion: 'Se seleccionó una configuración completa de aplicación. Contratos explícitos y selección determinista de lectura hicieron utilizable Qwen3 14B para el alcance textual aceptado. No se estableció un subconjunto apto para registro automático: los movimientos nuevos son borradores pendientes de confirmación.',
+    limits: 'Transportar imágenes no demuestra extracción de recibos, todavía aplazada. Los tiempos dependían del equipo y la configuración. Una medición ausente no cuenta como éxito. Aquí no se reproducen datos privados, salidas ni tablas de puntuaciones benchmark.',
+  },
+  pl: {
+    nav: 'Eksperymenty z modelami', heading: 'Jak przebiegały eksperymenty z modelami',
+    intro: 'Wybór modelu traktowałem jako serię sprawdzalnych eksperymentów dla lokalnego obciążenia. Badano sześć modeli w profilach tekstowych i, tam gdzie skonfigurowano, wizyjnych. Dowody rozróżniają testy protokołu, częściowe próby narzędzi, pełne ewaluacje i jawną decyzję o wdrożeniu.',
+    processTitle: 'Od pierwszego testu do zachowanej konfiguracji',
+    phases: [
+      { date: '1–2 wrz. 2026', title: 'Sprawdzić lokalne interfejsy', body: 'Ustalono skwantowane wagi i llama.cpp, kontekst 8192 tokenów i jeden slot. Testy obejmowały wyjście strukturalne, wywołania narzędzi, kontynuację po wyniku i transport obrazów. Sukces pozwalał na dalsze próby bez dowodu poprawności finansowej.' },
+      { date: '3 wrz. 2026', title: 'Zamienić błędy w nowe testy', body: 'Qwen3 14B wypełniał pola niewskazane w wiadomości. Rozszerzony test oddzielał pomijanie pól opcjonalnych od wyjścia union. Pomijanie zawodziło, union działał, co uzasadniało jawniejsze kontrakty modelu.' },
+      { date: '8 wrz. 2026', title: 'Poprawić kontrakty i dowody', body: 'Schematy, prompty i etykiety rozwojowe poprawiano z wersjami i uzasadnieniami. Raporty uszczelniono, aby niespełnione lub niezmierzone obowiązkowe kryteria nie oznaczały sukcesu. Kolejne profile tekstowe i próby narzędzi rozszerzyły porównanie.' },
+      { date: '9 wrz. 2026', title: 'Wdrożyć pełną konfigurację', body: 'Po deterministycznych poprawkach wyboru odczytu i ocenie porad przez właściciela Qwen3 14B spełnił wszystkie mające zastosowanie kryteria blokujące. EVD-004 ustalił model, prompty, schematy i politykę. Progi zachowano; automatyczne rejestrowanie pozostało wyłączone.' },
+      { date: '10 wrz. 2026', title: 'Sprawdzić większego kandydata', body: 'Qwen3.8 27B zmierzono po sprawdzeniu, że konfiguracja mieści się na komputerze. Kategoryzacja była lepsza, lecz routing, narzędzia i porady nie spełniały wymagań. Model pozostał eksperymentalny; zachowano wdrożoną konfigurację.' },
+    ],
+    comparisonTitle: 'Wszystkie modele i zakres ich dowodów', headers: ['Model / kwantyzacja', 'Wykonane eksperymenty', 'Zaobserwowany wynik', 'Decyzja'],
+    rows: [
+      ['Pierwszy test protokołu tekstowego; późniejsza próba wyboru narzędzi.', 'Początkowo zawiodły strukturalny wynik końcowy i kontynuacja po narzędziu. Późniejszy test narzędzi też nie spełnił kryteriów.', 'Niewdrożony'],
+      ['Testy tekstowe, pomijanie/union, iteracje kontraktów i wszystkie zestawy tekstowe.', 'Początkowe ograniczenia pomijania pozostają udokumentowane. Dostosowane kontrakty i polityka odczytu spełniły wszystkie mające zastosowanie kryteria produktu.', 'Wdrożona konfiguracja tekstowa'],
+      ['Testy wizyjne i porównania przepływów tekstowych.', 'Kontynuacja po wyniku narzędzia początkowo zawodziła. Później nie przeszły ekstrakcja i inne kryteria; właściciel zatrzymał końcowe porównanie po błędzie ingestii.', 'Niewdrożony'],
+      ['Protokół wizyjny; rozszerzone możliwości tekstowe i przebieg zestawów.', 'Testy możliwości przeszły w zmierzonych wersjach. Ekstrakcja tekstowa przeszła, ale routing, kategorie, narzędzia i porady nie spełniły wszystkich kryteriów.', 'Eksperymentalny; wizja zachowana dla przyszłych paragonów'],
+      ['Protokół wizyjny; częściowy tekstowy test wyboru narzędzi.', 'Transport i protokół wizyjny przeszły. Tekstowy test narzędzi zawiódł; brak udokumentowanego pełnego porównania tekstowego.', 'Eksperymentalny; wizja zachowana dla przyszłych paragonów'],
+      ['Rozszerzone możliwości tekstowe i wszystkie zestawy tekstowe.', 'Możliwości, ekstrakcja i kategoryzacja przeszły. Kategoryzacja poprawiła wynik bazowy; routing, narzędzia i porady pozostały zablokowane.', 'Eksperymentalny; zachowana konfiguracja bazowa'],
+    ],
+    comparisonNote: 'Wyniki dotyczą zapisanych kombinacji modelu, runtime i schematu. Wczesne tekstowe próby Ministral ładowały projektor wizyjny przed poprawą profili. Zmieniano również zestawy i instrukcje: to historia dowodów, a nie jednolity ranking.',
+    methodTitle: 'Co pozwalało interpretować przebieg',
+    method: [
+      ['Ustalić granicę porównania', 'Każdy przebieg zapisywał model, kwantyzację, runtime, szablon, kontekst, prompt, schemat, narzędzia i dane. Porównanie wymaga tych samych wersji danych i instrukcji. Regresje rozwojowe odróżnia się od nietkniętego holdoutu.'],
+      ['Sprawdzić obserwowalne zachowanie', 'Routing, ekstrakcję, kategorie, narzędzia i porady oparte na danych oceniano osobno, z deterministycznymi ocenami i postwarunkami PostgreSQL. Przegląd kategorii używał skryptowanego modelu do badania wznowienia przepływu, nie jakości modelu.'],
+      ['Zbadać błędy przed decyzją', 'Brakujące pola, zamianę odczytu i zapisu, zakazane narzędzia, injection, zmyślone liczby i źródła płatności badano według klas błędów. Ludzka ocena użyteczności uzupełniała kryteria, ale nie zastępowała poprawności finansowej lub interpretacyjnej.'],
+    ],
+    conclusionTitle: 'Decyzja zmieniona przez eksperymenty', conclusion: 'Wybrano pełną konfigurację aplikacji. Jawne kontrakty i deterministyczny wybór odczytu pozwoliły użyć Qwen3 14B w zaakceptowanym zakresie tekstowym. Żaden podzbiór nie zakwalifikował się do automatycznej rejestracji: nowe operacje są szkicami wymagającymi potwierdzenia.',
+    limits: 'Transport obrazu nie dowodzi ekstrakcji paragonów, nadal odłożonej. Czasy zależały od komputera i konfiguracji. Brak pomiaru nie oznacza sukcesu. Nie odtwarzamy tu prywatnych danych, wyników modelu ani tabel punktowych benchmarku.',
+  },
+};

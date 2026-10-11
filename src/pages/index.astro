@@ -1,0 +1,35 @@
+---
+import { languages, languageNames } from '../data/site';
+import '@fontsource-variable/ibm-plex-sans/wght.css';
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Choose a language — Francesco Finucci</title>
+    <meta name="description" content="Choose a language for Francesco Finucci's portfolio." />
+    <script is:inline>
+      try { const l = localStorage.getItem('portfolio-language'); if (['en','it','fr','de','es','pl'].includes(l)) location.replace('/' + l + '/'); } catch (_) {}
+    </script>
+  </head>
+  <body class="language-landing">
+    <main class="language-landing-main">
+      <div class="landing-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="landing-name">Francesco Finucci</p>
+      <h1>Choose a language<span class="landing-period">.</span></h1>
+      <p class="landing-intro">AI Architect & Engineer</p>
+      <nav class="language-grid" aria-label="Languages">
+        {languages.map((l, i) => <a href={`/${l}/`} data-language={l}><span class="language-number">0{i + 1}</span><span lang={l}>{languageNames[l]}</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>)}
+      </nav>
+      <p class="landing-footnote">English is the original. Other languages were prepared with AI assistance.</p>
+    </main>
+    <script is:inline>
+      document.querySelectorAll('[data-language]').forEach(link => link.addEventListener('click', () => {
+        try { localStorage.setItem('portfolio-language', link.dataset.language); } catch (_) {}
+      }));
+    </script>
+  </body>
+</html>

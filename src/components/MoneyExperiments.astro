@@ -1,0 +1,22 @@
+---
+import type { Language } from '../data/site';
+import { moneyExperiments, experimentModels } from '../data/moneyExperiments';
+const { lang } = Astro.props as { lang: Language };
+const e = moneyExperiments[lang];
+---
+<section id="model-experiments" class="mt-section" aria-labelledby="mt-experiments">
+  <div class="mt-section-heading"><h2 id="mt-experiments">{e.heading}</h2><p>{e.intro}</p></div>
+  <h3 class="mt-experiment-subheading">{e.processTitle}</h3>
+  <ol class="mt-experiment-phases">{e.phases.map(phase=><li><p class="mt-experiment-date">{phase.date}</p><div><h4>{phase.title}</h4><p>{phase.body}</p></div></li>)}</ol>
+  <h3 class="mt-experiment-subheading">{e.comparisonTitle}</h3>
+  <table class="mt-model-table">
+    <caption class="mt-visually-hidden">{e.comparisonTitle}</caption>
+    <thead><tr>{e.headers.map(header=><th scope="col">{header}</th>)}</tr></thead>
+    <tbody>{experimentModels.map((model,i)=><tr class:list={{'mt-model-promoted':i===1}}><th scope="row"><strong>{model.name}</strong><span class="mt-model-quant">{model.quantization}</span></th>{e.rows[i].map((cell,j)=><td><span class="mt-cell-label" aria-hidden="true">{e.headers[j+1]}</span>{j===2?<strong class="mt-model-status">{cell}</strong>:cell}</td>)}</tr>)}</tbody>
+  </table>
+  <p class="mt-experiment-note">{e.comparisonNote}</p>
+  <h3 class="mt-experiment-subheading">{e.methodTitle}</h3>
+  <div class="mt-experiment-method">{e.method.map(([title,body])=><section><h4>{title}</h4><p>{body}</p></section>)}</div>
+  <section class="mt-experiment-conclusion"><h3>{e.conclusionTitle}</h3><p>{e.conclusion}</p></section>
+  <p class="mt-experiment-note">{e.limits}</p>
+</section>

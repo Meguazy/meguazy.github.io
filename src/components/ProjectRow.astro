@@ -1,0 +1,11 @@
+---
+import { copy, projectPath, type Language, type ProjectId } from '../data/site';
+interface Props { lang: Language; id: ProjectId; index: number }
+const { lang, id, index } = Astro.props;
+const project = copy[lang].projects[id];
+---
+<a class="project-row" href={projectPath(lang, id)} aria-label={`${copy[lang].projectsPage.view}: ${project.title}`}>
+  <span class="project-index">0{index + 1}</span>
+  <span class="project-body"><span class="project-field">{project.field}</span><strong>{project.title}</strong><span class="project-summary">{project.summary}</span></span>
+  <span class="row-link" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none"><path d="M5 15h19m-8-8 8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</a>
