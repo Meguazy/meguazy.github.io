@@ -20,7 +20,8 @@ const chapters = [
   { id: 'model-experiments', label: moneyExperiments[lang].nav },
   { id: 'verification', label: t.nav[4] },
 ];
-const budgets = [{name:'Alimentari',spend:82,target:100},{name:'Casa',spend:8,target:40},{name:'Trasporti',spend:30,target:50}];
+const budgets = [{name:'Groceries',spend:82,target:100},{name:'Household',spend:8,target:40},{name:'Transport',spend:30,target:50}];
+const euros = (amount: number) => new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' }).format(amount);
 ---
 <div class="money-technical section-wrap">
   <div class="money-story-intro"><h2>{m.heading}</h2><p>{m.lead}</p></div>
@@ -54,7 +55,13 @@ const budgets = [{name:'Alimentari',spend:82,target:100},{name:'Casa',spend:8,ta
   <section id="bot-demo" class="mt-section" aria-labelledby="mt-bot">
     <div class="mt-section-heading"><h2 id="mt-bot">{t.bot}</h2><p>{t.botText}</p></div>
     <figure class="mt-bot-figure"><figcaption class="mt-simulation-label">{t.simulation}</figcaption>
-      <div class="mt-chat" lang="it"><div class="mt-chat-header">Money Tracker <span>Demo</span></div><div class="mt-chat-messages"><div class="mt-chat-user"><span>Messaggio di esempio</span><p>Oggi ho speso 36 euro: 28 per alimentari e 8 per la casa. Ho pagato con 12 euro di buoni e 24 con la carta.</p></div><div class="mt-chat-bot"><span>Risposta illustrativa</span><p><strong>Bozza di spesa: 36,00 €</strong></p><p>Alimentari 28,00 € · Casa 8,00 €<br/>Buoni 12,00 € · Carta 24,00 €</p><p>In attesa della tua conferma.</p><div class="mt-chat-controls" aria-hidden="true"><span>Conferma</span><span>Modifica</span><span>Annulla</span></div></div></div></div>
+      <div class="mt-chat" lang="en">
+        <div class="mt-chat-header">Money Tracker <span>Demo</span></div>
+        <div class="mt-chat-messages">
+          <div class="mt-chat-user"><span>Example message</span><p>Today I spent €36 — €28 on groceries and €8 on household items. I paid with €12 in vouchers and €24 by card.</p></div>
+          <div class="mt-chat-bot"><span>Illustrative response</span><p><strong>Expense draft · {euros(36)}</strong></p><p>Groceries {euros(28)} · Household {euros(8)}<br/>Vouchers {euros(12)} · Card {euros(24)}</p><p>Waiting for your confirmation.</p><div class="mt-chat-controls" aria-hidden="true"><span>Confirm</span><span>Edit</span><span>Cancel</span></div></div>
+        </div>
+      </div>
     </figure>
   </section>
 
@@ -66,8 +73,29 @@ const budgets = [{name:'Alimentari',spend:82,target:100},{name:'Casa',spend:8,ta
 
   <section id="dashboard-demo" class="mt-section" aria-labelledby="mt-dashboard">
     <div class="mt-section-heading"><h2 id="mt-dashboard">{d.heading}</h2><p>{d.text}</p></div><p class="mt-simulation-label">{d.label}</p>
-    <figure class="mt-dashboard-figure"><h3>{d.overview}</h3><div class="mt-dashboard" lang="it"><div class="mt-dashboard-top"><strong>Money Tracker</strong><span>Quadro · Marzo 2026 · Demo</span></div><div class="mt-dashboard-body"><h4>Dove stanno andando i tuoi soldi</h4><p class="mt-dashboard-note">Solo movimenti registrati · 3 movimenti fittizi</p><dl class="mt-metrics"><div><dt>Spesa netta</dt><dd>120,00 €</dd></div><div><dt>Fondi personali</dt><dd>108,00 €</dd></div><div><dt>Benefit</dt><dd>12,00 €</dd></div></dl><h5>Budget sotto controllo</h5><p class="mt-dashboard-note">Spesa registrata / obiettivo mensile</p><div class="mt-budget-bars">{budgets.map(b=><div><div class="mt-budget-label"><strong>{b.name}</strong><span>{b.spend},00 € / {b.target},00 €</span></div><div class="mt-budget-track"><span style={`width:${b.spend/b.target*100}%`}></span></div></div>)}</div></div></div><figcaption>{d.captions[0]}</figcaption></figure>
-    <figure class="mt-dashboard-figure"><h3>{d.movements}</h3><div class="mt-dashboard" lang="it"><div class="mt-dashboard-top"><strong>Movimenti</strong><span>Demo · sola rappresentazione</span></div><div class="mt-dashboard-body"><div class="mt-transaction-heading"><h4>Spesa di esempio</h4><span>Registrato</span><strong>36,00 €</strong></div><div class="mt-transaction-allocations"><section><h5>Categorie</h5><p><span>Alimentari</span><strong>28,00 €</strong></p><p><span>Casa</span><strong>8,00 €</strong></p><p class="mt-reconciled">Somma: 36,00 € · riconciliata</p></section><section><h5>Fonti di pagamento</h5><p><span>Buoni</span><strong>12,00 €</strong></p><p><span>Carta</span><strong>24,00 €</strong></p><p class="mt-reconciled">Somma: 36,00 € · riconciliata</p></section></div><div class="mt-dashboard-controls" aria-hidden="true"><span>Modifica movimento</span><span>Annulla movimento</span></div></div></div><figcaption>{d.captions[1]}</figcaption></figure>
+    <figure class="mt-dashboard-figure"><h3>{d.overview}</h3>
+      <div class="mt-dashboard" lang="en">
+        <div class="mt-dashboard-top"><strong>Money Tracker</strong><span>Overview · March 2026 · Demo</span></div>
+        <div class="mt-dashboard-body"><h4>Where your money is going</h4><p class="mt-dashboard-note">Posted transactions only · 3 fictitious transactions</p>
+          <dl class="mt-metrics"><div><dt>Net spending</dt><dd>{euros(120)}</dd></div><div><dt>Personal funds</dt><dd>{euros(108)}</dd></div><div><dt>Benefits</dt><dd>{euros(12)}</dd></div></dl>
+          <h5>Monthly budgets</h5><p class="mt-dashboard-note">Posted spending / monthly target</p>
+          <div class="mt-budget-bars">{budgets.map(b=><div><div class="mt-budget-label"><strong>{b.name}</strong><span>{euros(b.spend)} / {euros(b.target)}</span></div><div class="mt-budget-track"><span style={`width:${b.spend/b.target*100}%`}></span></div></div>)}</div>
+        </div>
+      </div><figcaption>{d.captions[0]}</figcaption>
+    </figure>
+    <figure class="mt-dashboard-figure"><h3>{d.movements}</h3>
+      <div class="mt-dashboard" lang="en">
+        <div class="mt-dashboard-top"><strong>Transactions</strong><span>Illustrative transaction · Demo</span></div>
+        <div class="mt-dashboard-body">
+          <div class="mt-transaction-heading"><h4>Example purchase</h4><span>Posted</span><strong>{euros(36)}</strong></div>
+          <div class="mt-transaction-allocations">
+            <section><h5>Categories</h5><p><span>Groceries</span><strong>{euros(28)}</strong></p><p><span>Household</span><strong>{euros(8)}</strong></p><p class="mt-reconciled">Total {euros(36)} · reconciled</p></section>
+            <section><h5>Payment sources</h5><p><span>Vouchers</span><strong>{euros(12)}</strong></p><p><span>Card</span><strong>{euros(24)}</strong></p><p class="mt-reconciled">Total {euros(36)} · reconciled</p></section>
+          </div>
+          <div class="mt-dashboard-controls" aria-hidden="true"><span>Edit transaction</span><span>Undo transaction</span></div>
+        </div>
+      </div><figcaption>{d.captions[1]}</figcaption>
+    </figure>
   </section>
 
   <MoneyExperiments lang={lang} />

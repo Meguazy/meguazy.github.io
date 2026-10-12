@@ -40,7 +40,7 @@ export const moneyTechnical: Record<Language, Technical> = {
     verification: 'Different evidence for different failure modes', verificationLabels: ['Deterministic software tests', 'Model-dependent evaluations'],
     softwareTests: 'Tests check allocation sums, authorization, command idempotency and audit transitions. PostgreSQL integration and end-to-end checks cover persistence and recovery; model evaluations do not replace these invariants.',
     operations: 'Operations are part of the design: durable retry and dead-letter states, local model-call tracing, and Restic encrypted backups. Trace content remains private. Acceptance evidence exists in the project; no performance score or private artifact is reproduced here.',
-    bot: 'What the interaction can look like', simulation: 'Simulation in Italian · fictitious data · not a screenshot',
+    bot: 'What the interaction can look like', simulation: 'Simulation in English · fictitious data · not a screenshot',
     botText: 'A schematic rendering of the interaction, not an exact reproduction of the current bot UI. Amounts, categories and wording are invented for this example. The financial model below the conversation explains the two reconciliations.',
   },
   it: {
@@ -71,7 +71,7 @@ export const moneyTechnical: Record<Language, Technical> = {
     verification: 'Prove diverse per errori diversi', verificationLabels: ['Test software deterministici', 'Valutazioni dipendenti dal modello'],
     softwareTests: 'I test controllano somme delle allocazioni, autorizzazione, idempotenza dei comandi e transizioni di audit. Le verifiche con PostgreSQL e i percorsi end-to-end coprono persistenza e recupero; le valutazioni del modello non sostituiscono queste invarianti.',
     operations: 'Anche l’operatività fa parte del progetto: retry persistenti e stati dead letter, tracciamento locale delle chiamate al modello e backup cifrati con Restic. Il contenuto delle tracce rimane privato. Le prove di accettazione esistono nel progetto; qui non sono riprodotti punteggi prestazionali o artefatti privati.',
-    bot: 'Come può presentarsi l’interazione', simulation: 'Simulazione in italiano · dati fittizi · non è uno screenshot',
+    bot: 'Come può presentarsi l’interazione', simulation: 'Simulazione in inglese · dati fittizi · non è uno screenshot',
     botText: 'Rappresentazione schematica dell’interazione, non una riproduzione esatta dell’interfaccia attuale. Importi, categorie e formulazioni sono inventati per questo esempio. Il modello finanziario sotto la conversazione spiega le due riconciliazioni.',
   },
   fr: {
@@ -97,7 +97,7 @@ export const moneyTechnical: Record<Language, Technical> = {
     verification: 'Des preuves adaptées aux modes de défaillance', verificationLabels: ['Tests logiciels déterministes', 'Évaluations dépendantes du modèle'],
     softwareTests: 'Les tests vérifient sommes des répartitions, autorisation, idempotence des commandes et transitions d’audit. Les tests PostgreSQL et de bout en bout couvrent persistance et reprise ; les évaluations du modèle ne remplacent pas ces invariants.',
     operations: 'L’exploitation fait partie du projet : retries durables, états dead letter, traces locales des appels au modèle et sauvegardes chiffrées Restic. Les traces restent privées. Les preuves d’acceptation existent dans le projet ; aucun score de performance ou artefact privé n’est reproduit ici.',
-    bot: 'Exemple d’interaction', simulation: 'Simulation en italien · données fictives · pas une capture d’écran', botText: 'Représentation schématique, pas une reproduction exacte de l’interface actuelle. Montants, catégories et formulations sont inventés. Le modèle financier sous la conversation explique les deux rapprochements.',
+    bot: 'Exemple d’interaction', simulation: 'Simulation en anglais · données fictives · pas une capture d’écran', botText: 'Représentation schématique, pas une reproduction exacte de l’interface actuelle. Montants, catégories et formulations sont inventés. Le modèle financier sous la conversation explique les deux rapprochements.',
   },
   de: {
     nav: ['Architektur', 'Nachrichtenfluss', 'Finanzmodell', 'Entscheidungen', 'Überprüfung', 'Bot-Demo'],
@@ -120,7 +120,7 @@ export const moneyTechnical: Record<Language, Technical> = {
     verification: 'Passende Nachweise für verschiedene Fehler', verificationLabels: ['Deterministische Softwaretests', 'Modellabhängige Evaluationen'],
     softwareTests: 'Tests prüfen Aufteilungssummen, Autorisierung, Befehlsidempotenz und Audit-Übergänge. PostgreSQL-Integration und vollständige Abläufe prüfen Persistenz und Wiederherstellung; Modellevaluationen ersetzen diese Invarianten nicht.',
     operations: 'Zum Betrieb gehören dauerhafte Wiederholungen und Dead-Letter-Zustände, lokale Modellaufruf-Traces und verschlüsselte Restic-Backups. Trace-Inhalte bleiben privat. Abnahmenachweise liegen im Projekt vor; Leistungswerte und private Artefakte werden hier nicht wiedergegeben.',
-    bot: 'So kann eine Interaktion aussehen', simulation: 'Simulation auf Italienisch · fiktive Daten · kein Screenshot', botText: 'Schematische Darstellung, keine exakte Reproduktion der aktuellen Oberfläche. Beträge, Kategorien und Texte sind erfunden. Das Finanzmodell unter dem Dialog erklärt die beiden Abgleiche.',
+    bot: 'So kann eine Interaktion aussehen', simulation: 'Simulation auf Englisch · fiktive Daten · kein Screenshot', botText: 'Schematische Darstellung, keine exakte Reproduktion der aktuellen Oberfläche. Beträge, Kategorien und Texte sind erfunden. Das Finanzmodell unter dem Dialog erklärt die beiden Abgleiche.',
   },
   es: {
     nav: ['Arquitectura', 'Flujo de mensajes', 'Modelo financiero', 'Decisiones', 'Verificación', 'Demo del bot'],
@@ -143,7 +143,7 @@ export const moneyTechnical: Record<Language, Technical> = {
     verification: 'Evidencia distinta para fallos distintos', verificationLabels: ['Pruebas de software deterministas', 'Evaluaciones dependientes del modelo'],
     softwareTests: 'Las pruebas comprueban sumas de asignaciones, autorización, idempotencia de comandos y transiciones de auditoría. La integración PostgreSQL y las pruebas completas cubren persistencia y recuperación; las evaluaciones del modelo no sustituyen estas invariantes.',
     operations: 'El diseño incluye operación: reintentos persistentes y estados dead letter, trazas locales de llamadas al modelo y copias cifradas Restic. Las trazas permanecen privadas. Existe evidencia de aceptación en el proyecto; aquí no se reproducen puntuaciones de rendimiento ni artefactos privados.',
-    bot: 'Cómo puede verse la interacción', simulation: 'Simulación en italiano · datos ficticios · no es una captura', botText: 'Representación esquemática, no una reproducción exacta de la interfaz actual. Importes, categorías y textos son inventados. El modelo financiero bajo la conversación explica las dos conciliaciones.',
+    bot: 'Cómo puede verse la interacción', simulation: 'Simulación en inglés · datos ficticios · no es una captura', botText: 'Representación esquemática, no una reproducción exacta de la interfaz actual. Importes, categorías y textos son inventados. El modelo financiero bajo la conversación explica las dos conciliaciones.',
   },
   pl: {
     nav: ['Architektura', 'Przepływ wiadomości', 'Model finansowy', 'Decyzje', 'Weryfikacja', 'Demo bota'],
@@ -166,6 +166,6 @@ export const moneyTechnical: Record<Language, Technical> = {
     verification: 'Różne dowody dla różnych błędów', verificationLabels: ['Deterministyczne testy oprogramowania', 'Ewaluacje zależne od modelu'],
     softwareTests: 'Testy sprawdzają sumy podziałów, autoryzację, idempotencję poleceń i przejścia audytu. Integracja PostgreSQL i testy pełnych ścieżek obejmują trwałość i odzyskiwanie; ewaluacje modelu nie zastępują tych niezmienników.',
     operations: 'Projekt obejmuje eksploatację: trwałe ponowienia i stany dead letter, lokalne ślady wywołań modelu oraz szyfrowane kopie Restic. Treści śladów pozostają prywatne. Dowody akceptacji istnieją w projekcie; nie odtwarzamy tutaj wyników wydajności ani prywatnych artefaktów.',
-    bot: 'Przykładowa interakcja', simulation: 'Symulacja po włosku · fikcyjne dane · to nie zrzut ekranu', botText: 'Schematyczna prezentacja, a nie dokładne odtworzenie bieżącego interfejsu. Kwoty, kategorie i teksty są wymyślone. Model finansowy pod rozmową wyjaśnia oba uzgodnienia.',
+    bot: 'Przykładowa interakcja', simulation: 'Symulacja po angielsku · fikcyjne dane · to nie zrzut ekranu', botText: 'Schematyczna prezentacja, a nie dokładne odtworzenie bieżącego interfejsu. Kwoty, kategorie i teksty są wymyślone. Model finansowy pod rozmową wyjaśnia oba uzgodnienia.',
   },
 };
