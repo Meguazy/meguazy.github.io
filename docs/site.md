@@ -34,3 +34,13 @@ canonical document responsibilities, delivery, decisions, evidence, continuity,
 and adoption. Semantic HTML/CSS diagrams and native expandable document cards
 remain usable without JavaScript. Source verification and editorial limits are recorded in
 the [revision notes](revision-2026-11-04.md). The owner approved this six-language revision and its direct-to-main publication on 2026-11-04. Independent language review and complete visual QA are not claimed.
+
+## Problem-led opening revision
+
+A local editorial revision adds the current problem before the methodology,
+explains the solution and its rationale, and follows one illustrative room-booking
+example across requirements, scope, checks, and handoff. Source copy and five
+translations are in `src/data/foundationOpening.ts`. The owner approved this
+revision on 2026-11-04 and requested a commit and integration into local `main`.
+The owner will push manually; deployment is not claimed here. See the
+[opening revision record](revision-2026-11-04-opening.md).

@@ -13,3 +13,7 @@ L'anteprima locale genera 49 pagine statiche, incluso il nuovo caso FounDaTionZy
 La [revisione FounDaTionZy del 2026-11-04](revision-2026-11-04.md) documenta fonti, verifica locale e limiti; la bozza LinkedIn è conservata nell'area privata.
 
 Vedere [brief](brief.md), [questionario](content.md), [specifica](site.md) e [istruzioni per gli input](../inputs/README.md).
+
+## Revisione dell’apertura
+
+La [revisione dell’apertura del 2026-11-04](revision-2026-11-04-opening.md) recepisce il feedback di partire dal problema e mostrare come e perché il framework lo affronta con un esempio. Il proprietario ha approvato la nuova copia EN/IT/FR/DE/ES/PL e richiesto commit e integrazione su `main` locale. Il push è riservato al proprietario; la pubblicazione di questa revisione non è ancora verificata. I limiti delle verifiche restano dichiarati nel record.

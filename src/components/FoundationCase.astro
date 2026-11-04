@@ -2,17 +2,27 @@
 import type { Language } from '../data/site';
 import { foundationFlow, foundationProject, foundationRepository } from '../data/foundation';
 import { foundationStudy, foundationDocumentSources } from '../data/foundationStudy';
+import { foundationOpening } from '../data/foundationOpening';
 interface Props { lang: Language }
 const { lang } = Astro.props;
 const t = foundationStudy[lang];
 const f = foundationFlow[lang];
 const project = foundationProject[lang];
+const opening = foundationOpening[lang];
 const chapters = ['philosophy', 'documents', 'cycle', 'gates', 'evidence', 'continuity', 'start'];
 const source = (path: string) => `${foundationRepository}/blob/main/${path}`;
 ---
 <div class="foundation-case section-wrap">
-  <div class="fd-thesis"><h2>{t.thesis}</h2><p>{t.introduction}</p></div>
-  <nav class="fd-nav" aria-label={project.title}>{t.nav.map((label, i) => <a href={`#foundation-${chapters[i]}`}>{label}<span aria-hidden="true">↓</span></a>)}</nav>
+  <section id="foundation-problem" class="fd-opening" aria-labelledby="fd-problem-heading">
+    <div class="fd-thesis"><h2 id="fd-problem-heading">{opening.problemTitle}</h2><p>{opening.problemText}</p></div>
+    <div class="fd-answer"><section><h3>{opening.solutionTitle}</h3><p>{opening.solutionText}</p></section><section><h3>{opening.whyTitle}</h3><p>{opening.whyText}</p></section></div>
+    <figure class="fd-worked-example" aria-labelledby="fd-example-heading">
+      <p class="fd-example-label">{opening.exampleLabel}</p><h3 id="fd-example-heading">{opening.exampleTitle}</h3><p class="fd-example-intro">{opening.exampleText}</p>
+      <ol>{opening.steps.map(([title, artifact, text]) => <li><h4>{title}</h4><span class="fd-artifact">{artifact}</span><p>{text}</p></li>)}</ol>
+      <figcaption>{opening.takeaway}</figcaption>
+    </figure>
+  </section>
+  <nav class="fd-nav" aria-label={project.title}><a href="#foundation-problem">{opening.nav}<span aria-hidden="true">↑</span></a>{t.nav.map((label, i) => <a href={`#foundation-${chapters[i]}`}>{label}<span aria-hidden="true">↓</span></a>)}</nav>
 
   <section id="foundation-philosophy" class="fd-chapter" aria-labelledby="fd-philosophy-heading">
     <header class="fd-heading"><h2 id="fd-philosophy-heading">{t.philosophy}</h2><p>{t.philosophyIntro}</p></header>
@@ -74,10 +84,22 @@ const source = (path: string) => `${foundationRepository}/blob/main/${path}`;
   .fd-thesis{display:grid;grid-template-columns:1fr 1fr;gap:65px;margin-bottom:45px;padding-top:20px}
   .fd-thesis h2{font-size:clamp(30px,3.5vw,49px);letter-spacing:-.05em;line-height:1.12;font-weight:500;margin:0}
   .fd-thesis>p{font-size:19px;line-height:1.75;margin:0;color:var(--muted)}
+  .fd-opening{scroll-margin-top:25px;margin-bottom:45px}
+  .fd-answer{display:grid;grid-template-columns:1fr 1fr;gap:45px;margin-bottom:35px;padding-top:25px;border-top:1px solid var(--line)}
+  .fd-answer h3{font-size:23px;font-weight:500;letter-spacing:-.025em;line-height:1.3;margin:0 0 15px}.fd-answer p{font-size:17px;line-height:1.75;margin:0;color:var(--muted)}
+  .fd-worked-example{background:#e1ecf3;border-top:3px solid var(--blue);padding:30px}
+  .fd-worked-example>h3{font-size:clamp(25px,2.7vw,34px);font-weight:500;letter-spacing:-.035em;line-height:1.2;margin:0 0 17px}.fd-example-intro{font-size:17px;line-height:1.7;max-width:85ch;margin:0 0 28px;color:#405f72}
+  .fd-worked-example ol{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;margin:0;padding:0;counter-reset:booking-example}
+  .fd-worked-example li{counter-increment:booking-example;border-top:1px solid #87a6bb;padding-top:17px;position:relative}
+  .fd-worked-example li::before{content:counter(booking-example,decimal-leading-zero);display:block;font-family:'IBM Plex Mono',monospace;color:var(--blue-dark);font-size:12px;margin-bottom:15px}
+  .fd-worked-example h4{font-size:20px;font-weight:500;letter-spacing:-.025em;line-height:1.3;margin:0 0 12px;overflow-wrap:anywhere}.fd-artifact{display:block;font-size:12px;line-height:1.5;font-weight:600;color:var(--blue-dark);margin-bottom:15px}
+  .fd-worked-example li p{font-size:15px;line-height:1.7;margin:0;color:#405f72}.fd-worked-example figcaption{border-top:1px solid #a6bfce;padding-top:20px}
+  @media(max-width:1050px){.fd-worked-example ol{grid-template-columns:1fr 1fr}}
+  @media(max-width:760px){.fd-answer{grid-template-columns:1fr;gap:25px}.fd-answer h3{font-size:22px}.fd-answer p{font-size:16px}.fd-worked-example{padding:23px 20px}.fd-example-intro{font-size:16px}.fd-worked-example ol{grid-template-columns:1fr;gap:25px}.fd-worked-example li p{font-size:16px}.fd-opening{margin-bottom:30px}}
   .fd-nav{display:flex;flex-wrap:wrap;gap:0 28px;border-block:1px solid var(--line);padding:16px 0;margin-bottom:70px}
   .fd-nav a{display:flex;gap:12px;align-items:center;font-size:14px;line-height:1.5;padding:9px 0;color:var(--blue-dark)}
   .fd-nav a:hover{text-decoration:underline;text-underline-offset:5px}.fd-nav span{color:var(--muted)}
-  .fd-chapter{scroll-margin-top:25px;margin-top:80px}.fd-chapter:first-of-type{margin-top:0}
+  .fd-chapter{scroll-margin-top:25px;margin-top:80px}.fd-nav + .fd-chapter{margin-top:0}
   .fd-heading{border-top:3px solid var(--ink);background:#dce9f0;padding:30px 32px;margin-bottom:35px}
   .fd-heading h2{font-size:clamp(28px,3vw,40px);font-weight:500;letter-spacing:-.04em;line-height:1.18;margin:0}
   .fd-heading p{font-size:17px;line-height:1.7;max-width:86ch;color:#405f72;margin:16px 0 0}

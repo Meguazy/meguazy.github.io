@@ -26,3 +26,7 @@ L’anteprima mette le esperienze nell’apertura e prima dei progetti; il caso 
 ## FounDaTionZy — 2026-11-04
 
 Nuovo caso studio in sei lingue, presente in Home e Progetti, con sette capitoli sulla filosofia e sul metodo, mappa documentale esplorabile, diagrammi del ciclo di lavoro, dei gate e della ripresa fra sessioni, e collegamenti alle guide. La bozza LinkedIn italiana è in `inputs/private/foundationzy-linkedin-it.md`. Fonti, verifiche e limiti sono nelle [note della revisione](docs/revision-2026-11-04.md).
+
+## Revisione dell’apertura — 2026-11-04
+
+L’apertura del caso FounDaTionZy ora presenta problema, soluzione e motivazione, seguiti da un esempio illustrativo di prenotazione sale fra due sessioni. Il proprietario ha approvato la nuova copia nelle sei lingue e richiesto l’integrazione su `main` locale; eseguirà personalmente il push. Vedere le [note della revisione](docs/revision-2026-11-04-opening.md).
