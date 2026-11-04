@@ -1,10 +1,10 @@
 # Specifica del sito
 
-**Stato: anteprima Astro locale implementata; contenuti e traduzioni non ancora approvati per la pubblicazione.** GitHub Pages resta l'host previsto. Il futuro repository del sito sarà `meguazy.github.io`, distinto dal repository privato Money Tracker. Creazione del repository e pubblicazione sono riservate alla fase finale della [roadmap](roadmap.md).
+**Stato: portfolio pubblicato; aggiornamento FounDaTionZy approvato per la pubblicazione il 2026-11-04.** Il checkout configura GitHub Pages come host e `https://github.com/Meguazy/meguazy.github.io.git` come remoto, distinto dal repository privato Money Tracker. Il proprietario ha autorizzato il push diretto su `main` della versione presentata e il deploy mediante il workflow esistente; vedere la [roadmap](roadmap.md).
 
 ## Struttura e contenuti
 
-Pagine Home, Esperienza, Progetti e una pagina per ogni caso studio approvato. Navigazione coerente, collegamenti fra elenco e casi studio, contatto professionale neutro. Pubblicare solo testi e media con stato `contenuto approvato` nel [questionario](content.md), dopo selezione e anonimizzazione degli originali. L'anteprima locale contiene copie editoriali candidate e deve rimanere privata. Nessun contenuto grezzo di `inputs/private/` entra nel codice del sito.
+Pagine Home, Esperienza, Progetti e una pagina per ogni caso studio approvato. Navigazione coerente, collegamenti fra elenco e casi studio, contatto professionale neutro. Pubblicare solo testi e media con stato `contenuto approvato` nel [questionario](content.md), dopo selezione e anonimizzazione degli originali. I contenuti nuovi restano locali fino all’approvazione esplicita; quella del caso FounDaTionZy nelle sei lingue è registrata nelle note della revisione. Nessun contenuto grezzo di `inputs/private/` entra nel codice del sito.
 
 ## Lingue e scelta iniziale
 
@@ -22,4 +22,15 @@ Non aggiungere analytics, font remoti, widget, traduttori runtime o altri serviz
 
 ## Build e distribuzione previste
 
-Astro genera file statici; GitHub Actions eseguirà build e deploy su GitHub Pages soltanto dopo l'approvazione finale. Configurare `site` per l'URL dell'account e verificare le impostazioni richieste dalla guida Astro al momento dell'implementazione. Riferimenti: [Astro su GitHub Pages](https://docs.astro.build/en/guides/deploy/github/), [routing internazionale Astro](https://docs.astro.build/en/guides/internationalization/) e [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+Astro genera file statici; il workflow GitHub Actions esistente prevede build e deploy su GitHub Pages a ogni push su `main` e su avvio manuale. `site` è configurato per `https://meguazy.github.io`. La presenza del workflow non prova che un deploy sia riuscito o sia stato autorizzato. Verificare impostazioni e approvazione della versione prima di pubblicare nuove modifiche. Riferimenti: [Astro su GitHub Pages](https://docs.astro.build/en/guides/deploy/github/), [routing internazionale Astro](https://docs.astro.build/en/guides/internationalization/) e [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+
+## FounDaTionZy case study
+
+The approved publication includes FounDaTionZy in Home, Projects, and a dedicated case
+study in all six languages. English source copy and translations live in
+`src/data/foundation.ts` and `src/data/foundationStudy.ts`;
+`src/components/FoundationCase.astro` provides seven chapters on philosophy,
+canonical document responsibilities, delivery, decisions, evidence, continuity,
+and adoption. Semantic HTML/CSS diagrams and native expandable document cards
+remain usable without JavaScript. Source verification and editorial limits are recorded in
+the [revision notes](revision-2026-11-04.md). The owner approved this six-language revision and its direct-to-main publication on 2026-11-04. Independent language review and complete visual QA are not claimed.

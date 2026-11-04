@@ -2,11 +2,11 @@
 
 Progetto indipendente da Money Tracker per presentare esperienza professionale, competenze e casi studio a chi valuta opportunità di lavoro o cerca informazioni sul mio percorso. Money Tracker potrà essere un caso studio, senza diventare il fulcro del portfolio.
 
-**Stato canonico: anteprima locale del sito in sviluppo / contenuti e permessi in revisione.** Il proprietario ha chiesto di realizzare il sito il 2026-09-25. Esiste una build Astro locale; non esistono repository GitHub del sito né pubblicazione. La revisione dei contenuti resta aperta, come indicato in [docs/roadmap.md](docs/roadmap.md).
+**Stato canonico: portfolio pubblicato; aggiornamento FounDaTionZy approvato per la pubblicazione il 2026-11-04.** Il proprietario ha approvato la versione presentata e autorizzato commit, push diretto su `main` e aggiornamento del sito tramite il workflow GitHub Pages esistente. Ambito, verifiche e limiti sono nella [roadmap](docs/roadmap.md) e nelle [note della revisione](docs/revision-2026-11-04.md).
 
 ## Anteprima locale
 
-Con Node.js 22 o successivo: `npm install`, poi `npm run dev`. Aprire `http://localhost:4321/` per scegliere una lingua. `npm run check` e `npm run build` verificano la sorgente e generano i file statici. La build mantiene `noindex, nofollow` e non comprende alcun workflow di pubblicazione. I testi dei casi studio e le traduzioni sono bozze da revisionare prima di qualsiasi uso pubblico.
+Con Node.js 22 o successivo: `npm ci`, poi `npm run dev`. Aprire `http://localhost:4321/` per scegliere una lingua. `npm run check` e `npm run build` verificano la sorgente e generano i file statici. La build mantiene `noindex, nofollow`. Il workflow esistente esegue il deploy da `main`. La pubblicazione dell’aggiornamento FounDaTionZy nelle sei lingue è autorizzata; le verifiche visive e linguistiche ancora da completare sono dichiarate nelle note della revisione.
 
 ## Ordine di lettura
 
@@ -22,3 +22,7 @@ Inserire CV, note e materiali originali solo in `inputs/private/`. Compilare una
 ## Revisione del 2026-10-11
 
 L’anteprima mette le esperienze nell’apertura e prima dei progetti; il caso Money Tracker approfondisce architettura, sviluppo assistito da agenti e verifiche. Vedere [le note della revisione](docs/revision-2026-10-11.md). La bozza LinkedIn rimane nell’area privata. Testi e traduzioni restano da approvare.
+
+## FounDaTionZy — 2026-11-04
+
+Nuovo caso studio in sei lingue, presente in Home e Progetti, con sette capitoli sulla filosofia e sul metodo, mappa documentale esplorabile, diagrammi del ciclo di lavoro, dei gate e della ripresa fra sessioni, e collegamenti alle guide. La bozza LinkedIn italiana è in `inputs/private/foundationzy-linkedin-it.md`. Fonti, verifiche e limiti sono nelle [note della revisione](docs/revision-2026-11-04.md).
