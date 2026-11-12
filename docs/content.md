@@ -1,5 +1,9 @@
 # Questionario dei contenuti
 
+The [2026-11-12 revision record](revision-2026-11-12-career-and-research.md) records the
+owner-approved curated experience/NINA/MR Wolf copy in all six languages and the public
+Money Tracker source link. Raw input material remains outside the publication scope.
+
 Questo file è un modello senza dati personali. Compilare una **copia in `inputs/private/content.md`**, non questo documento tracciabile. Per ogni risposta annotare:
 
 - **Valore o bozza:** testo proposto, con la versione inglese come originale per i testi del sito.
@@ -33,7 +37,7 @@ Per ogni ruolo: organizzazione da nominare o descrizione anonima, titolo, tipo d
 
 ## Progetti e casi studio
 
-Per ogni progetto: nome pubblico o pseudonimo, periodo, contesto, problema, destinatari, ruolo personale, vincoli, scelte tecniche, lavoro svolto, risultato verificabile, limiti, lezioni, link consentiti, materiali visivi e autorizzazione di eventuali collaboratori o titolari. Specificare se il codice è pubblico o privato. Per Money Tracker, assumere repository privato e valutare separatamente ogni dettaglio o screenshot divulgabile.
+Per ogni progetto: nome pubblico o pseudonimo, periodo, contesto, problema, destinatari, ruolo personale, vincoli, scelte tecniche, lavoro svolto, risultato verificabile, limiti, lezioni, link consentiti, materiali visivi e autorizzazione di eventuali collaboratori o titolari. Verificare se il codice è pubblico o privato; Money Tracker è pubblico dal 2026-11-12 per richiesta del proprietario. Valutare separatamente ogni dettaglio o screenshot divulgabile, senza dedurre il permesso sui dati dalla visibilità del codice.
 
 ## Competenze e formazione
 

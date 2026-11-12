@@ -12,7 +12,7 @@ La prima versione comprende Home, Esperienza, Progetti e pagine dei singoli casi
 
 ## Confini della prima versione
 
-Niente pagina servizi, prezzi, inviti a commissionare lavoro o dichiarazioni di disponibilità freelance. Niente dati riservati, materiale aziendale, loghi, clienti o risultati non autorizzati. Money Tracker sarà un caso studio soltanto se il testo e gli eventuali media saranno approvati; il suo repository resta privato.
+Niente pagina servizi, prezzi, inviti a commissionare lavoro o dichiarazioni di disponibilità freelance. Niente dati riservati, materiale aziendale, loghi, clienti o risultati non autorizzati. Il codice di Money Tracker è pubblico dal 2026-11-12 per richiesta del proprietario; dati finanziari, credenziali e tracce private restano esclusi. La nuova revisione delle esperienze e dei casi NINA/MR Wolf è descritta nelle [note del 2026-11-12](revision-2026-11-12-career-and-research.md).
 
 Un contatto neutro non garantisce l'assenza di rischi contrattuali o di conflitti d'interessi. Prima di sollecitare o accettare incarichi esterni, il proprietario verifica contratto e policy aziendali e, se necessario, chiede consulenza professionale. Il contesto normativo va valutato per la situazione concreta; si veda la [circolare del Ministero del Lavoro sul cumulo di impieghi](https://www.lavoro.gov.it/documenti-e-norme/normative/Documents/2022/Circolare-19-del-20-09-22.pdf).
 
