@@ -10,6 +10,7 @@ const { lang } = Astro.props as { lang: Language };
 const m = moneyStudy[lang];
 const t = moneyTechnical[lang];
 const d = moneyDashboard[lang];
+const sourceLabel = { en: 'Explore the source on GitHub', it: 'Esplora il codice su GitHub', fr: 'Explorer le code sur GitHub', de: 'Quellcode auf GitHub ansehen', es: 'Explorar el código en GitHub', pl: 'Zobacz kod na GitHub' }[lang];
 const chapters = [
   { id: 'architecture', label: t.nav[0] },
   { id: 'message-flow', label: t.nav[1] },
@@ -25,6 +26,7 @@ const euros = (amount: number) => new Intl.NumberFormat('en-IE', { style: 'curre
 ---
 <div class="money-technical section-wrap">
   <div class="money-story-intro"><h2>{m.heading}</h2><p>{m.lead}</p></div>
+  <p><a class="money-source" href="https://github.com/Meguazy/money_tracker">{sourceLabel}<span aria-hidden="true"> ↗</span></a></p>
   <ul class="mt-stack" aria-label="Stack"><li>Python</li><li>LangChain / LangGraph</li><li>llama.cpp</li><li>PostgreSQL</li><li>FastAPI / React</li><li>Langfuse</li><li>Restic</li></ul>
   <nav class="mt-index" aria-label={m.heading}>{chapters.map(chapter=><a href={`#${chapter.id}`}>{chapter.label}</a>)}</nav>
 

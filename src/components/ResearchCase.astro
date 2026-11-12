@@ -1,0 +1,105 @@
+---
+import { copy, type Language } from '../data/site';
+import { researchStudies, type ResearchId } from '../data/researchStudy';
+interface Props { lang: Language; id: ResearchId }
+const { lang, id } = Astro.props;
+const t = researchStudies[lang][id];
+const labels = copy[lang].projectsPage;
+const convergence = id === 'conversational-ai';
+const chapters = [
+  ['architecture', t.architecture.title], ['flow', t.flow.title],
+  ['decisions', t.decisions.title], ['result', t.result.title],
+];
+---
+<div class="money-technical research-case section-wrap">
+  <ul class="mt-stack research-stack" aria-label={t.project.field}>{t.stack.map(item => <li>{item}</li>)}</ul>
+  <div class="research-brief">
+    <section><h2>{labels.context}</h2><p>{t.project.context}</p></section>
+    <section><h2>{labels.role}</h2><p>{t.project.role}</p></section>
+  </div>
+  <nav class="mt-index" aria-label={t.project.title}>{chapters.map(([anchor, title], i) => <a href={`#${anchor}`}><span>{String(i + 1).padStart(2, '0')}</span>{title}</a>)}</nav>
+
+  <section id="architecture" class="mt-section" aria-labelledby="research-architecture">
+    <div class="mt-section-heading"><h2 id="research-architecture">{t.architecture.title}</h2><p>{t.architecture.text}</p></div>
+    <figure class="research-figure">
+      <ol class="research-chain">{t.architecture.nodes.map((node, i) => <li>
+        <details class="research-node"><summary><span class="research-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><strong>{node.title}</strong></summary><p>{node.text}</p></details>
+        {i < t.architecture.nodes.length - 1 && <span class="research-arrow" aria-hidden="true">→</span>}
+      </li>)}</ol>
+      <figcaption>{t.architecture.caption}</figcaption>
+    </figure>
+  </section>
+
+  <section id="flow" class="mt-section" aria-labelledby="research-flow">
+    <div class="mt-section-heading"><h2 id="research-flow">{t.flow.title}</h2><p>{t.flow.text}</p></div>
+    <figure class:list={['research-figure', { 'research-convergence': convergence }]}>
+      <ol class="research-flow">{t.flow.nodes.map((node, i) => <li>
+        <span class="research-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{node.title}</h3><p>{node.text}</p>
+        {!convergence && i < t.flow.nodes.length - 1 && <span class="research-arrow" aria-hidden="true">→</span>}
+      </li>)}</ol>
+      <figcaption>{t.flow.caption}</figcaption>
+    </figure>
+  </section>
+
+  <section id="decisions" class="mt-section" aria-labelledby="research-decisions">
+    <div class="mt-section-heading"><h2 id="research-decisions">{t.decisions.title}</h2><p>{t.project.approach}</p></div>
+    <dl class="mt-decisions">{t.decisions.items.map(item => <div><dt>{item.title}</dt><dd><p>{item.text}</p></dd></div>)}</dl>
+  </section>
+
+  <section id="result" class="mt-section" aria-labelledby="research-result">
+    <div class="mt-section-heading"><h2 id="research-result">{t.result.title}</h2><p>{t.result.text}</p></div>
+    <ul class="research-evidence">{t.result.items.map(item => <li>{item}</li>)}</ul>
+  </section>
+  <section class="case-section case-disclosure research-disclosure"><h2>{labels.boundary}</h2><p>{t.project.boundary}</p></section>
+</div>
+
+<style>
+  .research-stack { list-style: none; padding: 0; }
+  .research-stack li { font-family: 'IBM Plex Mono', monospace; font-size: 12px; border: 1px solid #adbecb; border-radius: 5px; padding: 7px 10px; }
+  .research-brief { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(25px, 6vw, 80px); margin: 40px 0; }
+  .research-brief h2 { font-size: 25px; margin-bottom: 12px; }
+  .research-brief p { font-size: 18px; line-height: 1.7; }
+  .research-figure { margin: 0; padding: 36px clamp(18px, 4vw, 44px); background: #e3edf3; border: 1px solid var(--line); border-top: 0; }
+  .research-figure ol { list-style: none; padding: 0; margin: 0; }
+  .research-chain, .research-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; align-items: start; }
+  .research-chain > li, .research-flow > li { position: relative; min-width: 0; }
+  .research-node { border: 1px solid #9bb2c3; border-radius: 7px; background: var(--white); }
+  .research-node summary { min-height: 142px; padding: 20px 18px; cursor: pointer; list-style: none; }
+  .research-node summary::-webkit-details-marker { display: none; }
+  .research-node summary::after { content: '+'; float: right; font-size: 23px; line-height: 1; color: var(--blue-dark); }
+  .research-node[open] summary::after { content: '−'; }
+  .research-node summary strong { display: block; margin-top: 16px; font-size: 19px; line-height: 1.3; overflow-wrap: anywhere; }
+  .research-number { display: block; color: var(--blue-dark); font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; }
+  .research-node p { margin: 0; padding: 0 18px 22px; font-size: 16px; line-height: 1.65; }
+  .research-arrow { position: absolute; top: 57px; right: -23px; font-size: 22px; color: var(--blue-dark); }
+  .research-flow > li { padding: 22px 18px; border-top: 3px solid var(--blue); background: var(--white); border-radius: 0 0 6px 6px; }
+  .research-flow h3 { font-size: 20px; line-height: 1.3; margin: 16px 0 12px; overflow-wrap: anywhere; }
+  .research-flow p { margin: 0; font-size: 16px; line-height: 1.65; }
+  .research-convergence .research-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 46px 22px; }
+  .research-convergence .research-flow > li:last-child { grid-column: 1 / -1; border-top-color: var(--deep); background: var(--deep); color: var(--white); }
+  .research-convergence .research-flow > li:last-child .research-number { color: #b6d5ef; }
+  .research-convergence .research-flow > li:not(:last-child)::after { content: '↓'; position: absolute; bottom: -36px; left: 50%; font-size: 25px; color: var(--blue-dark); }
+  .research-figure figcaption { margin-top: 26px; font-size: 14px; line-height: 1.6; color: var(--muted); max-width: 100ch; }
+  .research-evidence { padding: 28px 28px 28px 48px; margin: 0; background: var(--white); }
+  .research-evidence li { padding: 7px 0; font-size: 16px; line-height: 1.65; }
+  .research-disclosure { margin-top: 55px; max-width: 950px; }
+  .research-disclosure p { font-size: 16px; line-height: 1.65; }
+  @media (max-width: 900px) and (min-width: 761px) {
+    .research-chain, .research-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .research-chain > li:nth-child(2) .research-arrow, .research-flow > li:nth-child(2) .research-arrow { display: none; }
+  }
+  @media (max-width: 760px) {
+    .research-brief, .research-chain, .research-flow, .research-convergence .research-flow { grid-template-columns: minmax(0, 1fr); }
+    .research-brief { gap: 20px; margin: 30px 0; }
+    .research-brief p { font-size: 16px; }
+    .research-chain, .research-flow { gap: 38px; }
+    .research-node summary { min-height: 0; }
+    .research-arrow { top: auto; bottom: -32px; right: calc(50% - 9px); transform: rotate(90deg); }
+    .research-convergence .research-flow { gap: 0; }
+    .research-convergence .research-flow > li { border-bottom: 1px solid var(--line); }
+    .research-convergence .research-flow > li:not(:last-child)::after { display: none; }
+    .research-convergence .research-flow > li:last-child { margin-top: 38px; }
+    .research-convergence .research-flow > li:last-child::before { content: '↓'; position: absolute; top: -35px; left: 50%; color: var(--blue-dark); font-size: 25px; }
+  }
+</style>

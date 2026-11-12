@@ -1,10 +1,10 @@
 # Specifica del sito
 
-**Stato: portfolio pubblicato; aggiornamento FounDaTionZy approvato per la pubblicazione il 2026-11-04.** Il checkout configura GitHub Pages come host e `https://github.com/Meguazy/meguazy.github.io.git` come remoto, distinto dal repository privato Money Tracker. Il proprietario ha autorizzato il push diretto su `main` della versione presentata e il deploy mediante il workflow esistente; vedere la [roadmap](roadmap.md).
+**Stato canonico: portfolio pubblicato; revisione esperienze e NINA/MR Wolf del 2026-11-12 approvata, in attesa di integrazione.** Il checkout configura GitHub Pages come host e `https://github.com/Meguazy/meguazy.github.io.git` come remoto, distinto dal codice ora pubblico di Money Tracker. La nuova revisione viene consegnata tramite PR; il deploy non è ancora verificato. Vedere la [roadmap](roadmap.md).
 
 ## Struttura e contenuti
 
-Pagine Home, Esperienza, Progetti e una pagina per ogni caso studio approvato. Navigazione coerente, collegamenti fra elenco e casi studio, contatto professionale neutro. Pubblicare solo testi e media con stato `contenuto approvato` nel [questionario](content.md), dopo selezione e anonimizzazione degli originali. I contenuti nuovi restano locali fino all’approvazione esplicita; quella del caso FounDaTionZy nelle sei lingue è registrata nelle note della revisione. Nessun contenuto grezzo di `inputs/private/` entra nel codice del sito.
+Pagine Home, Esperienza, Progetti e una pagina per ogni caso studio approvato. Navigazione coerente, collegamenti fra elenco e casi studio, contatto professionale neutro. Pubblicare solo testi e media con stato `contenuto approvato` nel [questionario](content.md), dopo selezione e anonimizzazione degli originali. I contenuti nuovi restano locali fino all’approvazione esplicita; l’approvazione della revisione corrente è registrata nelle [note del 2026-11-12](revision-2026-11-12-career-and-research.md). Nessun contenuto grezzo di `inputs/private/` entra nel codice del sito.
 
 ## Lingue e scelta iniziale
 

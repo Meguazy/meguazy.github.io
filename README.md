@@ -1,8 +1,8 @@
 # Portfolio professionale
 
-Progetto indipendente da Money Tracker per presentare esperienza professionale, competenze e casi studio a chi valuta opportunità di lavoro o cerca informazioni sul mio percorso. Money Tracker potrà essere un caso studio, senza diventare il fulcro del portfolio.
+Progetto indipendente da Money Tracker per presentare esperienza professionale, competenze e casi studio a chi valuta opportunità di lavoro o cerca informazioni sul mio percorso. Money Tracker è uno dei casi studio del portfolio.
 
-**Stato canonico: portfolio pubblicato; aggiornamento FounDaTionZy approvato per la pubblicazione il 2026-11-04.** Il proprietario ha approvato la versione presentata e autorizzato commit, push diretto su `main` e aggiornamento del sito tramite il workflow GitHub Pages esistente. Ambito, verifiche e limiti sono nella [roadmap](docs/roadmap.md) e nelle [note della revisione](docs/revision-2026-11-04.md).
+**Stato canonico: portfolio pubblicato; revisione esperienze e NINA/MR Wolf del 2026-11-12 approvata, in attesa di integrazione.** Le nuove descrizioni nelle sei lingue, i diagrammi e il collegamento al codice pubblico di Money Tracker sono pronti per la PR. Il deploy di questa revisione non è ancora dichiarato. Ambito, verifiche e approvazione sono nella [roadmap](docs/roadmap.md) e nelle [note della revisione](docs/revision-2026-11-12-career-and-research.md).
 
 ## Anteprima locale
 
